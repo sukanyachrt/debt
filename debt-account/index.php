@@ -73,7 +73,7 @@
                                     ผลการค้นหา
                                 </h3>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body table-responsive p-0">
                                 <table class="table table-bordered table-hover text-xs">
                                     <thead class="bg-primary">
                                         <tr>
@@ -100,7 +100,13 @@
                                             </td>
                                             <td class="text-center">-</td>
                                             <td class="text-center">กลุ่มบังคับคดี</td>
-                                            <td class="text-center"><i class="fas fa-eye"></i></td>
+                                            <td class="text-center">
+                                                <a href="detail.php?id=1" class="text-gray">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
