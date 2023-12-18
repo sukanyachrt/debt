@@ -74,7 +74,7 @@
                                 </h3>
                             </div>
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-bordered table-hover text-xs">
+                                <table class="table table-bordered table-hover text-sm">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th class="text-center">ลำดับที่</th>
@@ -82,8 +82,6 @@
                                             <th class="text-center">เลขที่บัญชีเงินกู้</th>
                                             <th class="text-center">ชื่อผู้กู้</th>
                                             <th class="text-center">สถานะบัญชีผู้กู้</th>
-                                            <th class="text-center">ยกเว้นติดตามหนี้</th>
-                                            <th class="text-center">วันที่อนุมัติยกเว้นติดตามหนี้</th>
                                             <th class="text-center">กลุ่มผู้กู้ยืม</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -95,10 +93,6 @@
                                             <td class="text-center">1013145631</td>
                                             <td class="text-center">นายนิรุธ ยอดชาญ</td>
                                             <td class="text-center">ปกติ</td>
-                                            <td class="text-center">
-                                                <input type="checkbox" disabled>
-                                            </td>
-                                            <td class="text-center">-</td>
                                             <td class="text-center">กลุ่มบังคับคดี</td>
                                             <td class="text-center">
                                                 <a href="detail.php?id=1" class="text-gray">
