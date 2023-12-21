@@ -62,55 +62,58 @@ if ($data == "insertdebt") {
 
        $connect->queryData();
        $id = $connect->affected_rows(); */
-       $data_account = [
-        "date_contract" => "01/07/2566",
-        "total_amount" => "69,600.00",
+
+  /*$data_account = [
+        "date_contract" => "04/09/2565",
+        "total_amount" => "43,200.00",
         "status_account" => "ปกติ",
-        "datestart_payment" => "05/07/2549",
-        "dateend_payment" => "02/07/2556",
-        "datecal_interest" => "05/07/2549",
+        "datestart_payment" => "05/07/2544",
+        "dateend_payment" => "05/08/2565",
+        "datecal_interest" => "05/07/2544",
         "payment_model" => "กำหนดเอง",
         "penalty_model" => "อัตราเบี้ยปรับจากคำพิพากษา 0%",
         "penalty_rate" => "0",
-        "penalty_rate_dif" => "6.0000",
-        "penalty_total" => "6.0000",
+        "penalty_rate_dif" => "7.5000",
+        "penalty_total" => "7.5000",
         "interest_model" => "อัตราดอกเบี้ยจากคำพิพากษา 0%",
         "interest_rate" => "0",
         "interest_rate_dif" => "1.0000",
         "interest_total" => "1.0000",
         "payment_frequency" => "รายเดือน",
-        "number_of_payments" => "1 งวด",
-        "remain_balance" => "10,719.40",
-        "overdue_installment_amount" => "10,719.40",
-        "overdue_principal_amount" => "10,719.40",
-        "number_of_overdue" => "1",
-        "interest_amount" => "1,934.36",
+        "number_of_payments" => "108 งวด",
+        "remain_balance" => "30,219.67",
+        "overdue_installment_amount" => "30,202.96",
+        "overdue_principal_amount" => "27,689.67",
+        "number_of_overdue" => "80",
+        "interest_amount" => "10,462.34",
         "interest_close_amount" => "0.00",
-        "penalty_amount" => "11,606.56",
+        "penalty_amount" => "3,131.66",
         "penalty_before_amount" => "0.00"
     ];
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*
 
   $connect->sql = "INSERT INTO `account_data`(`date_contract`,
         `total_amount`, `status_account`, 
@@ -153,5 +156,42 @@ if ($data == "insertdebt") {
 
   $connect->queryData();
   $id = $connect->affected_rows();
-  echo json_encode(["id" => $id, "detail" => $data_account]);
+
+  */
+
+  $guarantor = [
+    "prefix" => "นาย",
+    "fname" => "จันทรา",
+    "lname" => "คำวิชา",
+    "relationship" => "-",
+    "idcard" => "3410101173289",
+    "guarantee_percentage" => 100.00,
+    "guarantee_amount" => "43,813.67",
+    "details_link" => "ดูรายละเอียด"
+  ];
+  
+  
+  
+  
+  
+
+  $connect->sql = "INSERT INTO `guarantor`(`prefix`,
+   `fname`,
+    `lname`,
+     `relationship`,
+      `idcard`, 
+      `guarantee_percentage`,
+       `guarantee_amount`) VALUES
+        (  '" . $guarantor['prefix'] . "',
+          '" . $guarantor['fname'] . "',
+          '" . $guarantor['lname'] . "',
+          '" . $guarantor['relationship'] . "',
+          '" . $guarantor['idcard'] . "',
+          '" . $guarantor['guarantee_percentage'] . "',
+          '" . $guarantor['guarantee_amount'] . "'
+          
+        )";
+  $connect->queryData();
+  $id = $connect->affected_rows();
+  echo json_encode(["id" => $id, "detail" => $guarantor]);
 }
