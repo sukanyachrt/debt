@@ -830,7 +830,7 @@ $id = $_GET['id'];
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                       
+
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -841,7 +841,7 @@ $id = $_GET['id'];
                                                     <div class="tab-pane fade" id="custom-tabs-three-paymentdue" role="tabpanel" aria-labelledby="custom-tabs-three-paymentdue-tab">
                                                         <div class="row">
                                                             <div class="col-12 table-responsive p-0">
-                                                                <table class="table table-bordered table-hover text-xs">
+                                                                <table class="table table-bordered table-hover text-xs" id="tbPayment_due">
                                                                     <thead class="bg-primary">
                                                                         <tr>
                                                                             <th class="text-center">ลำดับที่</th>
@@ -900,7 +900,7 @@ $id = $_GET['id'];
                                                     <div class="tab-pane fade" id="custom-tabs-three-guarantor" role="tabpanel" aria-labelledby="custom-tabs-three-guarantor-tab">
                                                         <div class="row">
                                                             <div class="col-12 table-responsive p-0">
-                                                                <table class="table table-bordered table-hover text-xs">
+                                                                <table class="table table-bordered table-hover text-xs" id="tbgGuarantor">
                                                                     <thead class="bg-primary">
                                                                         <tr>
                                                                             <th class="text-center">ชื่อผู้ค้ำประกัน</th>
@@ -1125,85 +1125,12 @@ $id = $_GET['id'];
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row text-sm">
-                            <div class="col-md-4 text-right col-6">
-                                <div class="form-group">
-                                    <label for="txtidcard" class="text-gray">หมายเลขบัตรประจำตัวประชาชน</label>
+                        <div id="dataGuarantor">
 
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-6">
-                                <div class="form-group">
-                                    <span id="txtidcard">3411400182876</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row text-sm">
-                            <div class="col-md-4 text-right col-6">
-                                <div class="form-group">
-                                    <label for="txtidcard" class="text-gray">ชื่อ - สกุล</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <div class="form-group">
-                                    <span id="txtidcard">นายอุทัย พุทศรีเสน</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-right col-6">
-                                <div class="form-group">
-                                    <label for="txtidcard" class="text-gray">ความสัมพันธ์กับผู้กู้</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <div class="form-group">
-                                    <span id="txtidcard">-</span>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 text-right col-6">
-                                <div class="form-group">
-                                    <label for="txtidcard" class="text-gray">วัน/เดือน/ปี เกิด</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <div class="form-group">
-                                    <span id="txtidcard">-</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-right col-6">
-                                <div class="form-group">
-                                    <label for="txtidcard" class="text-gray">อายุ</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <div class="form-group">
-                                    <span id="txtidcard">-</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-right col-6">
-                                <div class="form-group">
-                                    <label for="txtidcard" class="text-gray">เพศ</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <div class="form-group">
-                                    <span id="txtidcard">-</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-right col-6">
-                                <div class="form-group">
-                                    <label for="txtidcard" class="text-gray">สถานะบุคคล</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <div class="form-group">
-                                    <span id="txtidcard">ปกติ</span>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-12 table-responsive p-0">
-                                <table class="table table-bordered table-hover text-xs">
+                                <table class="table table-bordered table-hover text-xs" id="tbGuarantor_address">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th class="text-center">ประเภทที่อยู่</th>
@@ -1213,34 +1140,7 @@ $id = $_GET['id'];
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">ที่ส่งเอกสาร</td>
-                                            <td class="text-center">เลขที่ 101 หมู่ 1 ต.นาเหล่า อ.นาวัง จ.หนองบัวลำภู</td>
-                                            <td class="text-center">39170</td>
-                                            <td class="text-center">-</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">ที่ทำงาน</td>
-                                            <td class="text-center">-</td>
-                                            <td class="text-center">-</td>
-                                            <td class="text-center">-</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">ตามทะเบียนบ้าน</td>
-                                            <td class="text-center">เลขที่ 101 หมู่ 1 ต.นาเหล่า อ.นาวัง จ.หนองบัวลำภู</td>
-                                            <td class="text-center">39170</td>
-                                            <td class="text-center">-</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">ปัจจุบัน</td>
-                                            <td class="text-center">-</td>
-                                            <td class="text-center">-</td>
-                                            <td class="text-center">-</td>
-
-                                        </tr>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -1259,9 +1159,11 @@ $id = $_GET['id'];
 </div>
 <?php include("../include/script.php") ?>
 <script>
-    refreshTable();
+    dataPayment_schedule();
+    dataPayment_due();
+    dataGuarantor();
 
-    function refreshTable() {
+    function dataPayment_schedule() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -1273,9 +1175,61 @@ $id = $_GET['id'];
         xhttp.send();
     }
 
+
+    function dataPayment_due() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tbPayment_due").getElementsByTagName("tbody")[0].innerHTML = this.responseText;
+
+            }
+        };
+        xhttp.open("GET", "../services/debt-account/payment_due.php?id=<?php echo $id ?>", true);
+        xhttp.send();
+    }
+
+    function dataGuarantor() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tbgGuarantor").getElementsByTagName("tbody")[0].innerHTML = this.responseText;
+
+            }
+        };
+        xhttp.open("GET", "../services/debt-account/guarantor.php?v=table&id=<?php echo $id ?>", true);
+        xhttp.send();
+    }
+
+    function FnEditEmploy(objId) {
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText)
+                document.getElementById("dataGuarantor").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "../services/debt-account/guarantor.php?v=div&id="+objId, true);
+        xhttp.send();
+
+        var xhttp_ = new XMLHttpRequest();
+        xhttp_.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText)
+                document.getElementById("tbGuarantor_address").getElementsByTagName("tbody")[0].innerHTML = this.responseText;
+            }
+        };
+        xhttp_.open("GET", "../services/debt-account/guarantor_address.php?id="+objId, true);
+        xhttp_.send();
+
+
+
+
+    }
+
     function calculateSum() {
         var tbody = document.getElementById("tbPayment_schedule").getElementsByTagName("tbody")[0];
-        var columnIndex = 3; 
+        var columnIndex = 3;
         var data = tbody.rows.length;
         var cell = tbody.rows[data - 1].cells[columnIndex]
         document.getElementById("txtSumPayment_schedule").innerHTML = cell.innerHTML;
