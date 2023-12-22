@@ -1,3 +1,10 @@
+<?php
+ob_start();
+session_start();
+if ($_SESSION['id'] == "") {
+    header("Location: ./../");
+}
+?>
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-primary">
 
     <a class="navbar-brand py-0" role="button">

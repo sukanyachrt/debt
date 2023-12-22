@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 text-center mt-2">
-                                        <button type="button" class="btn btn-primary"> <i class="fas fa-search"></i> ค้นหาข้อมูล </button>
+                                        <button type="button" class="btn btn-primary" onclick="searchData();"> <i class="fas fa-search"></i> ค้นหาข้อมูล </button>
                                         &nbsp;
                                         <button type="button" class="btn btn-default"> <i class="fas fa-times delete-row text-gray"></i> ล้าง </button>
                                     </div>
@@ -74,7 +74,7 @@
                                 </h3>
                             </div>
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-bordered table-hover text-sm">
+                                <table class="table table-bordered table-hover text-sm" id="tbDebt">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th class="text-center">ลำดับที่</th>
@@ -87,21 +87,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">บัญชีเงินกู้กยศ.</td>
-                                            <td class="text-center">1013145631</td>
-                                            <td class="text-center">นายนิรุธ ยอดชาญ</td>
-                                            <td class="text-center">ปกติ</td>
-                                            <td class="text-center">กลุ่มบังคับคดี</td>
-                                            <td class="text-center">
-                                                <a href="detail.php?id=1" class="text-gray">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-
-
-                                            </td>
-                                        </tr>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -114,6 +100,53 @@
 </div>
 
 <?php include("../include/script.php") ?>
+<script>
+    //ค้นหาข้อมูล
+    function searchData() {
+        let data = {
+            idcard: $('#txtidcard').val(),
+            fname: $('#txtfname').val(),
+            lname: $('#txtlname').val(),
+            noaccount: $('#txtnoaccount').val(),
+
+        }
+        console.log(data)
+        // var txtIdcard = $('#txtidcard').val();
+        // var txtfname = $('#txtfname').val();
+        // var txtlname = $('#txtlname').val();
+        // var txtnoaccount = $('#txtnoaccount').val();
+
+        $.ajax({
+            url: "../services/debt-account/data.php?v=searchdata",
+            type: "POST",
+            cache: false,
+            data: {
+                data: data
+            },
+            success: function(Res) {
+                console.log(Res);
+                var tbDebt = '';
+                $.each(Res, function(index, item) {
+                    tbDebt += `<tr>
+                        <td class="text-center">${index+1}</td>
+                        <td>${item.type_account}</td>
+                        <td>${item.no_account}</td>
+                        <td class="text-center">${item.prefix}${item.fname} ${item.lname}</td>
+                        <td class="text-center">${item.status_personal} </td>
+                        <td class="text-center">${item.loan_group} </td>
+                        <td class="text-center">
+                            <a href="detail.php?id=${item.id}" class="text-gray">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
+                    </tr>`
+                });
+
+                $('#tbDebt tbody').html(tbDebt)
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="asset/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="asset/plugins/toastr/toastr.min.css">
 </head>
 
 <body>
@@ -69,7 +71,18 @@
 
 <script src="asset/plugins/jquery/jquery.min.js"></script>
 <script src="asset/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="asset/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="asset/plugins/toastr/toastr.min.js"></script>
 <script>
+    
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+    
+
     $('#loginForm').validate({
         rules: {
             Username: {
@@ -110,10 +123,10 @@
                 success: function(response) {
                     console.log(response)
                     if (response.status == "ok") {
-                        window.location.replace("home")
-                      //  postSession(Res);
+                        postSession(response);
+
                     } else {
-                       // toastr.error(Res.msg)
+                        toastr.error(response.msg)
                     }
                 },
                 error: function(error) {
@@ -126,15 +139,15 @@
     // เพิ่มเงื่อนไขสำหรับกฎ alphanumeric
     $.validator.addMethod("alphanumeric", function(value, element) {
         return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
-    }, "โปรดกรอกข้อมูลที่มีเฉพาะตัวเลขและตัวอักษร");
+    }, "โปรดกรอกข้อมูลที่มีเฉพาะตัวเลขและตัวอักษร (a-z)");
 
     function postSession(data) {
         $.ajax({
-            url: "services/createsession.php",
+            url: "./createsession.php",
             type: "POST",
             data: data, // ใช้ข้อมูลจากการร้องขอแรก
             success: function(Res) {
-                window.location.replace(Res.role_emp);
+                window.location.replace(Res.page);
             },
 
         });

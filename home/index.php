@@ -6,7 +6,7 @@
         <div class="content text-center">
             <div class="bl_wrapper">
                 <img src="../asset/img/S__3563530-removebg-preview.png" class="img-fluid" />
-                <a class="btn_home text-lg">สวัสดีคุณ กฤติยา วิชระโภชน์ </a>
+                <a class="btn_home text-lg">สวัสดีคุณ <?php echo $_SESSION['fname']." ".$_SESSION['lname'] ?> </a>
             </div>
         </div>
     </div>

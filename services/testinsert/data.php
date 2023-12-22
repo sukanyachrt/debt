@@ -159,7 +159,7 @@ if ($data == "insertdebt") {
 
   */
 
-  $guarantor = [
+  /*$guarantor = [
     "prefix" => "นาย",
     "fname" => "จันทรา",
     "lname" => "คำวิชา",
@@ -170,11 +170,6 @@ if ($data == "insertdebt") {
     "details_link" => "ดูรายละเอียด"
   ];
   
-  
-  
-  
-  
-
   $connect->sql = "INSERT INTO `guarantor`(`prefix`,
    `fname`,
     `lname`,
@@ -192,6 +187,82 @@ if ($data == "insertdebt") {
           
         )";
   $connect->queryData();
-  $id = $connect->affected_rows();
-  echo json_encode(["id" => $id, "detail" => $guarantor]);
+  $id = $connect->affected_rows();*/
+
+  /* $data =  [
+    "ที่ส่งเอกสาร" => [
+        "ประเภทที่อยู่" => "ที่ส่งเอกสาร",
+        "ที่อยู่" => "-",
+        "รหัสไปรษณีย์" => "-",
+        "เบอร์โทรศัพท์" => "-"
+    ],
+    "ที่ทำงาน" => [
+        "ประเภทที่อยู่" => "ที่ทำงาน",
+        "ที่อยู่" => "-",
+        "รหัสไปรษณีย์" => "-",
+        "เบอร์โทรศัพท์" => "-"
+    ],
+    "ตามทะเบียนบ้าน" => [
+        "ประเภทที่อยู่" => "ตามทะเบียนบ้าน",
+        "ที่อยู่" => "-",
+        "รหัสไปรษณีย์" => "-",
+        "เบอร์โทรศัพท์" => "-"
+    ]
+];
+
+
+  foreach ($data as $type => $address) {
+
+    $connect->sql = "INSERT INTO `guarantor_address`(
+       `address_type`,           `address`,           `zipcode`,            `telephone`) VALUES (
+        '" . $type . "',
+        '" . $address['ที่อยู่'] . "',
+        '" . $address['รหัสไปรษณีย์'] . "',
+        '" . $address['เบอร์โทรศัพท์'] . "'
+          )";
+
+    $connect->queryData();
+  }
+*/
+
+/*
+$legalCase = array(
+  'lg_id' => 'KTB0395600124',
+  'court' => 'ศาลจังหวัดหนองบัวลำภู',
+  'lawyer_office' => 'บริษัท กฎหมาย ช ชัยวิวัตร์ จำกัด',
+  'phone_number' => '043514454',
+  'black_case_number' => 'ผบ.425/2556',
+  'red_case_number' => 'ผบ.644/2556',
+  'filing_date' => '2013-07-01',
+  'case_iteration' => 1,
+  'case_status_date' => date('Y-m-d', strtotime('-543 years', strtotime('2566-09-11'))),
+  'case_setup_date' => date('Y-m-d', strtotime('-543 years', strtotime('2555-08-31'))),
+  'case_status' => 'สืบหาทรัพย์นอกจำนองพบ / ไม่พบ',
+  'legal_status' => 'Active'
+);
+
+
+
+  $connect->sql = "INSERT INTO `legalcase`(`lg_id`, `court`,
+   `lawyer_office`, `phone_number`,
+    `black_case_number`, `red_case_number`,
+     `filing_date`, `case_iteration`,
+      `case_status_date`, `case_setup_date`,
+       `case_status`, `legal_status`) VALUES
+        (  '" . $legalCase['lg_id'] . "',
+          '" . $legalCase['court'] . "',
+          '" . $legalCase['lawyer_office'] . "',
+          '" . $legalCase['phone_number'] . "',
+          '" . $legalCase['black_case_number'] . "',
+          '" . $legalCase['red_case_number'] . "',
+          '" . $legalCase['filing_date'] . "',
+          '" . $legalCase['case_iteration'] . "',
+          '" . $legalCase['case_status_date'] . "',
+          '" . $legalCase['case_setup_date'] . "',
+          '" . $legalCase['case_status'] . "',
+          '" . $legalCase['legal_status'] . "'
+        )";
+  $connect->queryData();
+  */
+  echo json_encode(["detail" => "dd"]);
 }

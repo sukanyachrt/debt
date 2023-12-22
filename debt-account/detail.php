@@ -1,4 +1,10 @@
 <?php include('../include/header.php') ?>
+<?php
+include('../services/Connect_Data.php');
+$connect = new Connect_Data();
+$connect->connectData();
+$id = $_GET['id'];
+?>
 <div class="wrapper">
     <?php include("../include/topmenu.php") ?>
     <div class="content-wrapper">
@@ -37,6 +43,35 @@
                                 </h5>
                             </div>
                             <div class="card-body">
+                                <?php
+                                $connect->sql = "SELECT
+                                     debtor.idcard,
+                                     debtor.id,
+                                     debtor.prefix,
+                                     debtor.fname,
+                                     debtor.lname,
+                                     debtor.no_account,
+                                     debtor.status_account,
+                                     debtor.status_personal,
+                                     debtor.type_account,
+                                     debtor.telephone,
+                                     account_debt.loan_group,
+                                     account_debt.account_manager,
+                                     account_debt.loan_account_number,
+                                     account_debt.loan_account_type,
+                                     account_debt.loan_account_status,
+                                     account_debt.status_change_date,
+                                     account_debt.request_deferral,
+                                     account_debt.request_suspend,
+                                     account_debt.date_suspend 
+                                 FROM
+                                     debtor
+                                     INNER JOIN account_debt ON debtor.id = account_debt.debt_id 
+                                     WHERE	debtor.id = '" . $id . "'";
+                                $connect->queryData();
+                                $rsdebtor = $connect->fetch_AssocData();
+
+                                ?>
                                 <div class="row text-sm">
                                     <div class="col-md-3 text-right col-6">
                                         <div class="form-group">
@@ -46,7 +81,9 @@
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <div class="form-group">
-                                            <span id="txtidcard">5411400107285</span>
+                                            <span id="txtidcard">
+                                                <?php echo $rsdebtor['idcard'] ?>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-md-3 text-right col-6">
@@ -56,7 +93,9 @@
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <div class="form-group">
-                                            <span id="txtidcard">นางเกศรินทร์ เนาว์โพธิ์ทอง</span>
+                                            <span id="txtidcard">
+                                                <?php echo $rsdebtor['prefix'] . $rsdebtor['fname'] . " " . $rsdebtor['lname'] ?>
+                                            </span>
                                         </div>
                                     </div>
 
@@ -67,7 +106,9 @@
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <div class="form-group">
-                                            <span id="txtidcard">1012808181</span>
+                                            <span id="txtidcard">
+                                                <?php echo $rsdebtor['no_account'] ?>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-md-3 text-right col-6">
@@ -77,7 +118,9 @@
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <div class="form-group">
-                                            <span id="txtidcard">00</span>
+                                            <span id="txtidcard">
+                                                <?php echo $rsdebtor['status_account'] ?>
+                                            </span>
                                         </div>
                                     </div>
 
@@ -88,7 +131,9 @@
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <div class="form-group">
-                                            <span id="txtidcard">ปกติ</span>
+                                            <span id="txtidcard">
+                                                <?php echo $rsdebtor['status_personal'] ?>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-md-3 text-right col-6">
@@ -98,11 +143,30 @@
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <div class="form-group">
-                                            <span id="txtidcard">บัญชีเงินกู้กยศ.</span>
+                                            <span id="txtidcard">
+                                                <?php echo $rsdebtor['type_account'] ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 text-right col-6">
+                                        <div class="form-group">
+                                            <label for="txtfname" class="text-gray">เบอร์โทรศัพท์ลูกหนี้</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="form-group">
+                                            <span id="txtidcard">
+                                                <?php
+                                                $phone_1 = explode("[", $rsdebtor['telephone']);
+                                                $phone_2 = explode("]", $phone_1[1]);
+                                                $output = str_replace('"', ' ', $phone_2[0]);
+                                                echo $output;
+                                                ?>
+                                            </span>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3 text-right col-6">
+                                    <!-- <div class="col-md-3 text-right col-6">
                                         <div class="form-group">
                                             <label for="txtidcard" class="text-gray">Flag สถานะบัญชีลุกหนี้ล่าสุด</label>
                                         </div>
@@ -175,7 +239,7 @@
                                         <div class="form-group">
                                             <span id="txtidcard">-</span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
@@ -211,7 +275,7 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">5411400107285</span>
+                                                                    <span id="txtidcard"><?php echo $rsdebtor['idcard'] ?></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -221,7 +285,9 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">นางเกศรินทร์ เนาว์โพธิ์ทอง</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['prefix'] . $rsdebtor['fname'] . " " . $rsdebtor['lname'] ?>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -231,7 +297,9 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">KTC</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['account_manager'] ?>
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -242,7 +310,9 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">1012808181</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['no_account'] ?>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -252,7 +322,9 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">บัญชีเงินกู้กยศ.</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['type_account'] ?>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -262,7 +334,9 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">กลุ่มบังคับคดี</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['loan_group'] ?>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -272,7 +346,9 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">00</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['status_account'] ?>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -282,7 +358,10 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">10/10/2552</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['status_change_date'] ?>
+
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -292,7 +371,9 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">-</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['request_deferral'] ?>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -302,7 +383,10 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">-</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['request_suspend'] ?>
+
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 text-right col-3">
@@ -312,7 +396,10 @@
                                                             </div>
                                                             <div class="col-md-2 col-3">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">-</span>
+                                                                    <span id="txtidcard">
+                                                                        <?php echo $rsdebtor['date_suspend'] ?>
+
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -328,6 +415,14 @@
                                                                         </h5>
                                                                     </div>
                                                                     <div class="card-body">
+                                                                        <?php
+                                                                        $connect->sql = "SELECT * FROM account_data WHERE debt_id='" . $id . "'";
+                                                                        $connect->queryData();
+                                                                        $rsaccount_data = $connect->fetch_AssocData();
+
+
+
+                                                                        ?>
                                                                         <div class="row text-sm">
                                                                             <div class="col-md-3 text-right col-6">
                                                                                 <div class="form-group">
@@ -337,7 +432,9 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">15/12/2566</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php echo date('d/m/') . "" . (date('Y') + 543) ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -347,7 +444,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">04/09/2565</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['date_contract'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -357,7 +458,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">65,000.00</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['total_amount'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -367,7 +472,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">ปกติ</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['status_account'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -377,7 +486,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">05/07/2546</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['datestart_payment'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -387,7 +500,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">14/12/2566</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['dateend_payment'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -397,19 +514,14 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">05/07/2546</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['datecal_interest'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3 text-right col-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">วันที่คำนวณดอกเบี้ยครั้งสุดท้าย</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 col-6">
-                                                                                <div class="form-group">
-                                                                                    <span id="txtidcard">14/12/2566</span>
-                                                                                </div>
-                                                                            </div>
+
 
                                                                             <div class="col-md-3 text-right col-6 pt-3">
                                                                                 <div class="form-group">
@@ -418,7 +530,12 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6 pt-3">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">กำหนดเอง</span>
+                                                                                    <span id="txtidcard">
+
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['payment_model'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -431,7 +548,11 @@
 
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard">อัตราเบี้ยปรับจากคำพิพากษา 0 %</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['pernalty_model'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
 
@@ -442,7 +563,12 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 0 %</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['pernalty_rate'];
+                                                                                        ?>
+
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -452,7 +578,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 1.0000 %</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['pernalty_rate_dif'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -462,17 +592,25 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 1.0000 %</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['pernalty_total'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
                                                                                 <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">ประเภทการดอกเบี้ย (Interest Model)</label>
+                                                                                    <label for="txtfname" class="text-gray">ประเภทการคำนวณดอกเบี้ย (Interest Model)</label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> อัตราดอกเบี้ยจากคำพิพากษา %</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['interest_model'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -482,7 +620,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 0 %</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['interest_rate'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -492,7 +634,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 1.0000 %</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['interest_rate_dif'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -502,7 +648,11 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 1.0000 %</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['interest_total'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -512,107 +662,110 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> รายเดือน</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['payment_frequency'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">จำนวนครั้งที่ต้องชำระ</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 col-6">
-                                                                                <div class="form-group">
-                                                                                    <span id="txtidcard"> 108 งวด</span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 text-right col-6 pt-3">
-                                                                                <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">ยอดรวมปิดบัญชี (บาท)</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 col-6 pt-3">
-                                                                                <div class="form-group">
-                                                                                    <span id="txtidcard"> 58,906.19 งวด</span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 text-right col-6 pt-3">
                                                                                 <div class="form-group">
                                                                                     <label for="txtfname" class="text-gray">ยอดหนี้เงินกู้คงเหลือ (บาท)</label>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3 col-6 pt-3">
+                                                                            <div class="col-md-3 col-6">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 47,310.91 งวด</span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['remain_balance'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3 text-right col-6">
+                                                                            <div class="col-md-3 text-right col-6 pt-3">
                                                                                 <div class="form-group">
                                                                                     <label for="txtfname" class="text-gray">ยอดเงินงวดค้างชำระ (บาท)</label>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3 col-6 ">
+                                                                            <div class="col-md-3 col-6 pt-3">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 49,466.00 </span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['overdue_installment_amount'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3 text-right col-6">
+                                                                            <div class="col-md-3 text-right col-6 pt-3">
                                                                                 <div class="form-group">
                                                                                     <label for="txtfname" class="text-gray">ยอดเงินต้นค้างชำระ (บาท)</label>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3 col-6 ">
+                                                                            <div class="col-md-3 col-6 pt-3">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 45,154.55 </span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['overdue_principal_amount'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
                                                                                 <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">วันที่ชำระครั้งล่าสุด</label>
+                                                                                    <label for="txtfname" class="text-gray">จำนวนครั้งที่ค้างชำระ</label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 col-6 ">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 02/12/2566 </span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['number_overdue'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
                                                                                 <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">จำนวนครั้งที่ชำระ</label>
+                                                                                    <label for="txtfname" class="text-gray">ดอกเบี้ย (บาท) </label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 col-6 ">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 76 </span>
+                                                                                    <span id="txtidcard">
+
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['interest_amount'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
                                                                                 <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">ดอกเบี้ย (บาท)</label>
+                                                                                    <label for="txtfname" class="text-gray">ยอดดอกเบี้ยปิดบัญชี (บาท)</label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 col-6 ">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 7,699.93 </span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['interest_close_amount'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
                                                                                 <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">ยอดดอกเบี้บปิดบัญชี (บาท)</label>
+                                                                                    <label for="txtfname" class="text-gray">เบี้ยปรับ (บาท) </label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 col-6 ">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 0.00 </span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 text-right col-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">เบี้ยปรับ (บาท)</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 col-6 ">
-                                                                                <div class="form-group">
-                                                                                    <span id="txtidcard"> 3,895.35 </span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['penalty_amount'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3 text-right col-6">
@@ -622,29 +775,14 @@
                                                                             </div>
                                                                             <div class="col-md-3 col-6 ">
                                                                                 <div class="form-group">
-                                                                                    <span id="txtidcard"> 0.00 </span>
+                                                                                    <span id="txtidcard">
+                                                                                        <?php
+                                                                                        echo $rsaccount_data['penalty_before_amount'];
+                                                                                        ?>
+                                                                                    </span>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3 text-right col-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">จำนวนวันที่ค้างชำระ </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 col-6 ">
-                                                                                <div class="form-group">
-                                                                                    <span id="txtidcard"> 2776 </span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 text-right col-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="txtfname" class="text-gray">เงินที่นำมาคืดเบี้ยปรับ </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 col-6 ">
-                                                                                <div class="form-group">
-                                                                                    <span id="txtidcard"> Payment + Int Record </span>
-                                                                                </div>
-                                                                            </div>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -661,7 +799,7 @@
                                                             </div>
                                                             <div class="col-md-3 col-6">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">55,310.91</span>
+                                                                    <span id="txtSumPayment_schedule"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3 text-right col-6">
@@ -672,14 +810,14 @@
                                                             </div>
                                                             <div class="col-md-3 col-6">
                                                                 <div class="form-group">
-                                                                    <span id="txtidcard">55,310.91</span>
+                                                                    <span id="txtSumPayment_schedule_2">55,310.91</span>
                                                                 </div>
                                                             </div>
 
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12 table-responsive p-0">
-                                                                <table class="table table-bordered table-hover text-xs">
+                                                                <table class="table table-bordered table-hover text-xs" id="tbPayment_schedule">
                                                                     <thead class="bg-primary">
                                                                         <tr>
                                                                             <th class="text-center">ลำดับที่</th>
@@ -692,39 +830,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
-                                                                            <td class="text-center">1</td>
-                                                                            <td class="text-center">05/09/2566</td>
-                                                                            <td class="text-right">0.00</td>
-                                                                            <td class="text-right">0.00</td>
-                                                                            <td class="text-right">700.00</td>
-                                                                            <td class="text-right">
-                                                                                700.00
-                                                                            </td>
-
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="text-center">2</td>
-                                                                            <td class="text-center">05/10/2566</td>
-                                                                            <td class="text-right">0.00</td>
-                                                                            <td class="text-right">0.00</td>
-                                                                            <td class="text-right">700.00</td>
-                                                                            <td class="text-right">
-                                                                                700.00
-                                                                            </td>
-
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="text-center">3</td>
-                                                                            <td class="text-center">05/11/2566</td>
-                                                                            <td class="text-right">0.00</td>
-                                                                            <td class="text-right">0.00</td>
-                                                                            <td class="text-right">700.00</td>
-                                                                            <td class="text-right">
-                                                                                700.00
-                                                                            </td>
-
-                                                                        </tr>
+                                                                       
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -749,7 +855,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
+                                                                        <!-- <tr>
                                                                             <td class="text-center">1</td>
                                                                             <td class="text-center">05/09/2566</td>
                                                                             <td class="text-right">700.00</td>
@@ -784,7 +890,7 @@
                                                                             <td class="text-center">ชำระแล้ว</td>
                                                                             <td class="text-center">01/11/2566</td>
                                                                             <td class="text-right">0.00</td>
-                                                                        </tr>
+                                                                        </tr> -->
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -1152,6 +1258,30 @@
     </div>
 </div>
 <?php include("../include/script.php") ?>
+<script>
+    refreshTable();
+
+    function refreshTable() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tbPayment_schedule").getElementsByTagName("tbody")[0].innerHTML = this.responseText;
+                calculateSum();
+            }
+        };
+        xhttp.open("GET", "../services/debt-account/payment_schedule.php?id=<?php echo $id ?>", true);
+        xhttp.send();
+    }
+
+    function calculateSum() {
+        var tbody = document.getElementById("tbPayment_schedule").getElementsByTagName("tbody")[0];
+        var columnIndex = 3; 
+        var data = tbody.rows.length;
+        var cell = tbody.rows[data - 1].cells[columnIndex]
+        document.getElementById("txtSumPayment_schedule").innerHTML = cell.innerHTML;
+        document.getElementById("txtSumPayment_schedule_2").innerHTML = cell.innerHTML;
+    }
+</script>
 </body>
 
 </html>

@@ -8,34 +8,31 @@ $data = isset($_GET['v']) ? $_GET['v'] : '';
 $result = array();
 if ($data == "checkauth") {
     
-    // $username = $_POST["username"];
-    // $password = $_POST["password"];
-    // $connect->sql = "SELECT * FROM	employees 
-    // WHERE	status_emp = 1 AND  username ='" . $username . "'";
-    // $connect->queryData();
-    // $row = $connect->num_rows();
-    // if ($row > 0) {
-    //     $rsconnect = $connect->fetch_AssocData();
-    //     if ($rsconnect['password'] == $password) {
-    //         $result = [
-    //             'status' => "ok",
-    //             'data' => $rsconnect
-    //         ];
-    //     } else {
-    //         $result = [
-    //             'status' => "no",
-    //             'msg' => "password ไม่ถูกต้องครับ"
-    //         ];
-    //     }
-    // } else {
-    //     $result = [
-    //         'status' => "no",
-    //         'msg' => "ไม่พบรหัสผู้ใช้งาน"
-    //     ];
-    // }
-    $result = [
-        'status' => "ok",
-        'msg' => "password ไม่ถูกต้องครับ"
-    ];
+    $username = $_POST["Username"];
+    $password = $_POST["Password"];
+    $connect->sql = "SELECT * FROM	employees 
+    WHERE	username ='" . $username . "'";
+    $connect->queryData();
+    $row = $connect->num_rows();
+    if ($row > 0) {
+        $rsconnect = $connect->fetch_AssocData();
+        if ($rsconnect['password'] == $password) {
+            $result = [
+                'status' => "ok",
+                'data' => $rsconnect
+            ];
+        } else {
+            $result = [
+                'status' => "no",
+                'msg' => "password ไม่ถูกต้องครับ"
+            ];
+        }
+    } else {
+        $result = [
+            'status' => "no",
+            'msg' => "ไม่พบรหัสผู้ใช้งาน"
+        ];
+    }
+    
     echo json_encode($result);
 }
