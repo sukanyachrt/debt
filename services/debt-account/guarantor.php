@@ -16,7 +16,15 @@ if ($_GET['v'] == "table") {
         <td class='text-center'>" . $rsconnect["relationship"] . "</td>
         <td class='text-center'>" . $rsconnect["idcard"] . "</td>
         <td class='text-center'>" . $rsconnect["guarantee_percentage"] . "</td>
-        <td class='text-center'>" . $rsconnect["guarantee_amount"] . "</td>
+        <td class='text-center'>" ;
+        if (strpos($rsconnect["guarantee_amount"], ',') !== false) {
+           echo $rsconnect["guarantee_amount"];
+        }
+        else{
+            echo number_format($rsconnect["guarantee_amount"], 2, '.', ',');
+        }
+        // .number_format($rsconnect["guarantee_amount"], 2, '.', ',')   .
+        echo "</td>
         <td class='text-center'>
             <i class='fas fa-eye btn btn-xs' data-toggle='modal' onclick='modalAddress(" . $rsconnect['id'] . ")' data-target='#modal-default'></i>
         </td>

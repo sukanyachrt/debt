@@ -43,9 +43,14 @@ if ($row > 0) {
     </div>
     <div class="col-md-3 col-6">
         <div class="form-group">
-            <span id="txtidcard">
-                ' . $rsaccount_data['total_amount'] . '
-            </span>
+            <span id="txtidcard">';
+            if (strpos($rsaccount_data["total_amount"], ',') !== false) {
+                echo $rsaccount_data["total_amount"];
+             }
+             else{
+                 echo number_format($rsaccount_data["total_amount"], 2, '.', ',');
+             }
+            echo '</span>
         </div>
     </div>
     <div class="col-md-3 text-right col-6">
@@ -230,9 +235,14 @@ if ($row > 0) {
 </div>
 <div class="col-md-3 col-6">
     <div class="form-group">
-        <span id="txtidcard">
-            ' . $rsaccount_data['remain_balance'] . '
-        </span>
+        <span id="txtidcard">';
+        if (strpos($rsaccount_data["remain_balance"], ',') !== false) {
+            echo $rsaccount_data["remain_balance"];
+         }
+         else{
+             echo number_format($rsaccount_data["remain_balance"], 2, '.', ',');
+         }
+        echo '</span>
     </div>
 </div>
 <div class="col-md-3 text-right col-6 pt-3">
@@ -242,9 +252,14 @@ if ($row > 0) {
 </div>
 <div class="col-md-3 col-6 pt-3">
     <div class="form-group">
-        <span id="txtidcard">
-            ' . $rsaccount_data['overdue_installment_amount'] . '
-        </span>
+        <span id="txtidcard">';
+        if (strpos($rsaccount_data["overdue_installment_amount"], ',') !== false) {
+            echo $rsaccount_data["overdue_installment_amount"];
+         }
+         else{
+             echo number_format($rsaccount_data["overdue_installment_amount"], 2, '.', ',');
+         }
+        echo '</span>
     </div>
 </div>
 <div class="col-md-3 text-right col-6 pt-3">
@@ -254,9 +269,14 @@ if ($row > 0) {
 </div>
 <div class="col-md-3 col-6 pt-3">
     <div class="form-group">
-        <span id="txtidcard">
-            ' . $rsaccount_data['overdue_principal_amount'] . '
-        </span>
+        <span id="txtidcard">';
+        if (strpos($rsaccount_data["overdue_principal_amount"], ',') !== false) {
+            echo $rsaccount_data["overdue_principal_amount"];
+         }
+         else{
+             echo number_format($rsaccount_data["overdue_principal_amount"], 2, '.', ',');
+         }
+        echo '</span>
     </div>
 </div>
 <div class="col-md-3 text-right col-6">
@@ -278,9 +298,14 @@ if ($row > 0) {
 </div>
 <div class="col-md-3 col-6 ">
     <div class="form-group">
-        <span id="txtidcard">
-            ' . $rsaccount_data['interest_amount'] . '
-        </span>
+        <span id="txtidcard">';
+        if (strpos($rsaccount_data["interest_amount"], ',') !== false) {
+            echo $rsaccount_data["interest_amount"];
+         }
+         else{
+             echo number_format($rsaccount_data["interest_amount"], 2, '.', ',');
+         }
+        echo '</span>
     </div>
 </div>
 <div class="col-md-3 text-right col-6">
@@ -302,9 +327,14 @@ if ($row > 0) {
 </div>
 <div class="col-md-3 col-6 ">
     <div class="form-group">
-        <span id="txtidcard">
-            ' . $rsaccount_data['penalty_amount'] . '
-        </span>
+        <span id="txtidcard">';
+        if (strpos($rsaccount_data["penalty_amount"], ',') !== false) {
+            echo $rsaccount_data["penalty_amount"];
+         }
+         else{
+             echo number_format($rsaccount_data["penalty_amount"], 2, '.', ',');
+         }
+        echo '</span>
     </div>
 </div>
 <div class="col-md-3 text-right col-6">

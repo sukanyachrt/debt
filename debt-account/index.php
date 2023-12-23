@@ -24,12 +24,19 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title text-primary">
+                                <h4 class="card-title text-primary">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                         <i class="fas fa-minus text-primary"></i>
                                     </button>
                                     ค้นหาลูกหนี้
-                                </h3>
+                                </h4>
+                                <div class="card-tools">
+                                    <a type="button" class="badge bg-primary p-2" href="../add-debt">
+                                        <i class="fas fa-plus"></i>
+                                         เพิ่มข้อมูล
+                                    </a>
+                                    
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -123,8 +130,8 @@
                 $.each(Res, function(index, item) {
                     tbDebt += `<tr>
                         <td class="text-center">${index+1}</td>
-                        <td>${item.type_account}</td>
-                        <td>${item.no_account}</td>
+                        <td class="text-center">${item.type_account}</td>
+                        <td class="text-center">${item.no_account}</td>
                         <td class="text-center">${item.prefix}${item.fname} ${item.lname}</td>
                         <td class="text-center">${item.status_personal} </td>
                         <td class="text-center">${item.loan_group} </td>
@@ -142,11 +149,11 @@
     }
 
     function resetData() {
-            $('#txtidcard').val('')
-            $('#txtfname').val('')
-            $('#txtlname').val('')
-            $('#txtnoaccount').val('')
-            searchData()
+        $('#txtidcard').val('')
+        $('#txtfname').val('')
+        $('#txtlname').val('')
+        $('#txtnoaccount').val('')
+        searchData()
     }
 </script>
 </body>

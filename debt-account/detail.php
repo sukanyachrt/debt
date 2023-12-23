@@ -98,28 +98,29 @@ $id = $_GET['id'];
                                                     </div>
                                                     <div class="tab-pane fade" id="custom-tabs-three-statement" role="tabpanel" aria-labelledby="custom-tabs-three-statement-tab">
                                                         <div class="row text-sm">
-                                                            <div class="col-md-3 text-right col-6">
+                                                            <div class="col-md-3 text-right col-6 pb-0 m-0">
                                                                 <div class="form-group">
                                                                     <label for="txtidcard" class="text-gray">ยอดหนี้เงินกู้</label>
 
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-3 col-6">
+                                                            <div class="col-md-3 col-6 pb-0 m-0">
                                                                 <div class="form-group">
                                                                     <span id="txtSumPayment_schedule"></span>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-3 text-right col-6">
+                                                            <div class="col-md-3 text-right col-6 pb-0 m-0">
                                                                 <div class="form-group">
-                                                                    <label for="txtidcard" class="text-gray">ใช้ในการคำนวณค่างวด</label>
-                                                                    <label for="txtidcard" class="text-gray pt-0">(สามารถเปลี่ยนแปลงค่าได้)</label>
+                                                                    <p for="txtidcard" class="text-gray">ใช้ในการคำนวณค่างวด</p>
+                                                                    <p for="txtidcard" class="text-gray pt-0">(สามารถเปลี่ยนแปลงค่าได้)</p>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-3 col-6">
+                                                            <div class="col-md-3 col-6 pb-0 m-0">
                                                                 <div class="form-group">
                                                                     <span id="txtSumPayment_schedule_2">55,310.91</span>
                                                                 </div>
                                                             </div>
+                                                            
 
                                                         </div>
                                                         <div class="row">
@@ -153,7 +154,7 @@ $id = $_GET['id'];
                                                                         <tr>
                                                                             <th class="text-center">ลำดับที่</th>
                                                                             <th class="text-center">กำหนดชำระ</th>
-                                                                            <th class="text-center">ยอดรวมใที่ต้องชำระ</th>
+                                                                            <th class="text-center">ยอดรวมที่ต้องชำระ</th>
                                                                             <th class="text-center">ดอกเบี้ย</th>
                                                                             <th class="text-center">เงินต้น</th>
                                                                             <th class="text-center">สถานะ</th>
@@ -316,10 +317,12 @@ $id = $_GET['id'];
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText)
                 document.getElementById("dataAccount").innerHTML = this.responseText;
                
             }
         };
+        
         xhttp.open("GET", "../services/debt-account/account.php?id=<?php echo $id ?>", true);
         xhttp.send();
     }

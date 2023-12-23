@@ -20,9 +20,9 @@ while ($rsconnect = $connect->fetch_AssocData()) {
     echo "<tr>
     <td class='text-center'>" . $i++ . "</td>
     <td class='text-center'>" . date('d/m/', strtotime($rsconnect["due_date"])) . (date('Y', strtotime($rsconnect["due_date"])) + 543) . "</td>
-    <td class='text-right'>" . $rsconnect["total_payment_due"] . "</td>
-    <td class='text-right'>" . $rsconnect["interest_amount"] . "</td>
-    <td class='text-right'>" . $rsconnect["principal_amount"] . "</td>
+    <td class='text-right'>" . number_format($rsconnect["total_payment_due"], 2, '.', ',')  . "</td>
+    <td class='text-right'>" .number_format($rsconnect["interest_amount"], 2, '.', ',')   . "</td>
+    <td class='text-right'>" .number_format($rsconnect["principal_amount"], 2, '.', ',')   . "</td>
     <td class='text-center'>" . $rsconnect["status"] . "</td>
     <td class='text-center'>" ;
 
@@ -33,7 +33,7 @@ while ($rsconnect = $connect->fetch_AssocData()) {
             echo "";
         }
     echo "</td>
-    <td class='text-right'>" . $rsconnect["overdue_amount"] . "</td>
+    <td class='text-right'>" .number_format($rsconnect["overdue_amount"], 2, '.', ',')   . "</td>
     </tr>";
 }
 

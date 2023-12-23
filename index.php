@@ -53,9 +53,7 @@
 
                                     <div class="d-grid mt-4">
                                         <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase fw-bold mb-2" type="submit">เข้าสู่ระบบ</button>
-                                        <div class="text-left mt-4">
-                                            ลืมรหัสผ่าน?<a href="#"> คลิกที่นี่</a>
-                                        </div>
+                                       
                                     </div>
 
                                 </form>
