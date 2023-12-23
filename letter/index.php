@@ -7,7 +7,7 @@
     .page {
         width: 95%;
         margin: 10px;
-        box-shadow: 0px 0px 5px rgba(50,50,50,.4);
+        box-shadow: 0px 0px 5px rgba(50, 50, 50, .4);
         animation: pageIn 1s ease;
         transition: all 1s ease, width 0.2s ease;
     }
@@ -31,7 +31,7 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    
+
                     <div class="col-sm-12">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">จดหมายทวงถาม</a></li>
@@ -63,40 +63,53 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.js"></script>
 <script>
-    var pdfUrl = '../services/pdf/1.pdf';
+    dataFile();
+    function dataFile() {
+        $.ajax({
+            url: "../services/letter/data.php?v=subrogation",
+            type: "GET",
+            success: function(Res) {
+                $.each(Res, function(index, item) {
+                   loadFilepdf(`../services/pdf/${item}`)
+                });
+            }
+        });
+    }
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
 
-    pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
-        // you can now use *pdf* here
-        console.log("the pdf has", pdf.numPages, "page(s).");
-        for (var i = 0; i < pdf.numPages; i++) {
-            (function(pageNum) {
-                pdf.getPage(i + 1).then(function(page) {
-                    // you can now use *page* here
-                    var viewport = page.getViewport(2.0);
+        function loadFilepdf(pdfUrl) {
+        pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+            // you can now use *pdf* here
+            console.log("the pdf has", pdf.numPages, "page(s).");
+            for (var i = 0; i < pdf.numPages; i++) {
+                (function(pageNum) {
+                    pdf.getPage(i + 1).then(function(page) {
+                        // you can now use *page* here
+                        var viewport = page.getViewport(2.0);
 
-                    var canvas = document.createElement("canvas");
-                    canvas.className = "page";
-                    document.querySelector("#pages").appendChild(canvas);
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
+                        var canvas = document.createElement("canvas");
+                        canvas.className = "page";
+                        document.querySelector("#pages").appendChild(canvas);
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
 
 
-                    page.render({
-                        canvasContext: canvas.getContext('2d'),
-                        viewport: viewport
-                    }).promise.then(function() {
-                        console.log('Page rendered');
+                        page.render({
+                            canvasContext: canvas.getContext('2d'),
+                            viewport: viewport
+                        }).promise.then(function() {
+                            console.log('Page rendered');
+                        });
+                        page.getTextContent().then(function(text) {
+                            console.log(text);
+                        });
                     });
-                    page.getTextContent().then(function(text) {
-                        console.log(text);
-                    });
-                });
-            })(i + 1);
-        }
+                })(i + 1);
+            }
 
-    });
+        });
+    }
 </script>
 
 </body>

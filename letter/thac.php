@@ -61,11 +61,20 @@
 <?php include("../include/script.php") ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.js"></script>
 <script>
-    var pdfUrl_2 = '../services/pdf/2.pdf';
-    var pdfUrl_3 = '../services/pdf/3.pdf';
-    var pdfUrl_4 = '../services/pdf/4.pdf';
-    var pdfUrl_5 = '../services/pdf/5.pdf';
-    var pdfUrl_6 = '../services/pdf/6.pdf';
+    dataFile();
+    function dataFile() {
+        $.ajax({
+            url: "../services/letter/data.php?v=thac",
+            type: "GET",
+            success: function(Res) {
+                $.each(Res, function(index, item) {
+                   loadFilepdf(`../services/pdf/${item}`)
+                });
+            }
+        });
+    }
+
+
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
 
@@ -101,12 +110,6 @@
 
         });
     }
-    loadFilepdf(pdfUrl_2);
-    loadFilepdf(pdfUrl_3)
-    loadFilepdf(pdfUrl_4)
-    loadFilepdf(pdfUrl_5)
-    loadFilepdf(pdfUrl_6)
-    
 
 </script>
 </body>

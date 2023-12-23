@@ -10,42 +10,48 @@ if ($data == "insertdebt") {
 
 
 
-  // $debt = [
-  //     "idcard" => "5411400107285",
-  //     "prefix" => "นาง",
-  //     "fname" => "เกศรินทร์",
-  //     "lname" => "เนาว์โพธิ์ทอง",
-  //     "no_account" => "1012808181",
-  //     "status_account" => "00",
-  //     "status_personal" => "ปกติ",
-  //     "type_account" => "บัญชีเงินกู้กยศ.",
-  //     "telephone" => ["0850478238"]
-  //   ] ;
+  /*$debt = [
+    "idcard" => "5411200037526",
+    "prefix" => "นาย",
+    "fname" => "จิรสิน",
+    "lname" => "ยะสาธะโรกุล",
+    "no_account" => "1014007313",
+    "status_account" => "00",
+    "status_personal" => "ปกติ",
+    "type_account" => "บัญชีเงินกู้กยศ.",
+    "telephone" => ["090-9678212", "0968213798", "0964012092"]
+];
 
 
-  // $connect->sql = "INSERT INTO `debtor`(`idcard`,`prefix`, `fname`,`lname`,`no_account`,`status_account`,          `status_personal`, 
-  //      `type_account`,`telephone`) VALUES
-  //       ('" . $debt['idcard'] . "','" . $debt['prefix'] . "',
-  //       '" . $debt['fname'] . "','" . $debt['lname'] . "',
-  //       '" . $debt['no_account'] . "','" . $debt['status_account'] . "',
-  //       '" . $debt['status_personal'] . "','" . $debt['type_account'] . "','" . json_encode($debt['telephone']) . "')";
-  // $connect->queryData();
-  // $id = $connect->affected_rows();
 
 
-  /* $account= [
-        "idcard" => "3420100234527",
-        "borrower_name" => "นางสาววาสนา วรพันธ์",
-        "account_manager" => "KTB",
-        "loan_account_number" => "1012808181",
-        "loan_account_type" => "บัญชีเงินกู้กยศ.",
-        "loan_group" => "กลุ่มบังคับคดี",
-        "loan_account_status" => "ปกติ",
-        "status_change_date" => "10/10/2552",
-        "request_deferral" => "-",
-        "request_suspend" => "-",
-        "date_suspend" => "-"
-      ] ;
+
+
+
+  $connect->sql = "INSERT INTO `debtor`(`idcard`,`prefix`, `fname`,`lname`,`no_account`,`status_account`,          `status_personal`, 
+       `type_account`,`telephone`) VALUES
+        ('" . $debt['idcard'] . "','" . $debt['prefix'] . "',
+        '" . $debt['fname'] . "','" . $debt['lname'] . "',
+        '" . $debt['no_account'] . "','" . $debt['status_account'] . "',
+        '" . $debt['status_personal'] . "','" . $debt['type_account'] . "','" . json_encode($debt['telephone']) . "')";
+  $connect->queryData();
+  $id = $connect->affected_rows();
+*/
+
+$account = [
+  "idcard" => "5411200037526",
+  "borrower_name" => "นายจิรสิน ยะสาธะโรกุล",
+  "account_manager" => "KTB",
+  "loan_account_number" => "1014007313",
+  "loan_account_type" => "บัญชีเงินกู้กยศ.",
+  "loan_group" => "กลุ่มบังคับคดี",
+  "loan_account_status" => "ปกติ",
+  "status_change_date" => "10/10/2552",
+  "request_deferral" => "-",
+  "request_suspend" => "-",
+  "date_suspend" => "-"
+];
+
 
     $connect->sql = "INSERT INTO `account_debt`(`account_manager`,
      `loan_account_number`, `loan_account_type`, `loan_group`,
@@ -61,7 +67,7 @@ if ($data == "insertdebt") {
        '".$account['date_suspend']."')";
 
        $connect->queryData();
-       $id = $connect->affected_rows(); */
+       $id = $connect->affected_rows(); 
 
   /*$data_account = [
         "date_contract" => "04/09/2565",

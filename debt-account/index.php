@@ -60,7 +60,7 @@
                                     <div class="col-12 text-center mt-2">
                                         <button type="button" class="btn btn-primary" onclick="searchData();"> <i class="fas fa-search"></i> ค้นหาข้อมูล </button>
                                         &nbsp;
-                                        <button type="button" class="btn btn-default"> <i class="fas fa-times delete-row text-gray"></i> ล้าง </button>
+                                        <button type="button" class="btn btn-default" onclick="resetData();"> <i class="fas fa-times delete-row text-gray"></i> ล้าง </button>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       
+
                                     </tbody>
                                 </table>
                             </div>
@@ -110,12 +110,6 @@
             noaccount: $('#txtnoaccount').val(),
 
         }
-        console.log(data)
-        // var txtIdcard = $('#txtidcard').val();
-        // var txtfname = $('#txtfname').val();
-        // var txtlname = $('#txtlname').val();
-        // var txtnoaccount = $('#txtnoaccount').val();
-
         $.ajax({
             url: "../services/debt-account/data.php?v=searchdata",
             type: "POST",
@@ -145,6 +139,14 @@
                 $('#tbDebt tbody').html(tbDebt)
             }
         });
+    }
+
+    function resetData() {
+            $('#txtidcard').val('')
+            $('#txtfname').val('')
+            $('#txtlname').val('')
+            $('#txtnoaccount').val('')
+            searchData()
     }
 </script>
 </body>
