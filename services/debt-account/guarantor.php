@@ -18,7 +18,7 @@ if ($_GET['v'] == "table") {
         <td class='text-center'>" . $rsconnect["guarantee_percentage"] . "</td>
         <td class='text-center'>" . $rsconnect["guarantee_amount"] . "</td>
         <td class='text-center'>
-            <i class='fas fa-eye btn btn-xs' data-toggle='modal' onclick='FnEditEmploy(" . $rsconnect['id'] . ")' data-target='#modal-default'></i>
+            <i class='fas fa-eye btn btn-xs' data-toggle='modal' onclick='modalAddress(" . $rsconnect['id'] . ")' data-target='#modal-default'></i>
         </td>
         </tr>";
     }
