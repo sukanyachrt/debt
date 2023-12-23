@@ -16,11 +16,10 @@ if ($_GET['v'] == "table") {
         <td class='text-center'>" . $rsconnect["relationship"] . "</td>
         <td class='text-center'>" . $rsconnect["idcard"] . "</td>
         <td class='text-center'>" . $rsconnect["guarantee_percentage"] . "</td>
-        <td class='text-center'>" ;
+        <td class='text-center'>";
         if (strpos($rsconnect["guarantee_amount"], ',') !== false) {
-           echo $rsconnect["guarantee_amount"];
-        }
-        else{
+            echo $rsconnect["guarantee_amount"];
+        } else {
             echo number_format($rsconnect["guarantee_amount"], 2, '.', ',');
         }
         // .number_format($rsconnect["guarantee_amount"], 2, '.', ',')   .
@@ -71,6 +70,65 @@ if ($_GET['v'] == "table") {
             <div class="col-md-2 col-6">
                 <div class="form-group">
                     <span id="txtidcard">' . $rsconnect["relationship"] . '</span>
+                </div>
+            </div>
+            <div class="col-md-4 text-right col-6">
+                <div class="form-group">
+                    <label for="txtidcard" class="text-gray">วัน/เดือน/ปี เกิด</label>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="form-group">
+                    <span id="txtidcard">';
+                        if ($rsconnect["birthday"] == "") {
+                            echo "-";
+                        } else {
+                            echo $rsconnect["birthday"];
+                        }
+                        echo '</span>
+                </div>
+            </div>
+            <div class="col-md-4 text-right col-6">
+                <div class="form-group">
+                    <label for="txtidcard" class="text-gray">อายุ</label>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="form-group">
+                    <span id="txtidcard">';
+                    if ($rsconnect["age"] == "0") {
+                        echo "-";
+                    } else {
+                        echo $rsconnect["age"];
+                    }
+                  
+                    echo '</span>
+                </div>
+            </div>
+            <div class="col-md-4 text-right col-6">
+                <div class="form-group">
+                    <label for="txtidcard" class="text-gray">เพศ</label>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="form-group">
+                    <span id="txtidcard">';
+                    if ($rsconnect["gender"] == "F") {
+                        echo "หญิง";
+                    } else {
+                        echo "ชาย";
+                    }
+                    echo '</span>
+                </div>
+            </div>
+            <div class="col-md-4 text-right col-6">
+                <div class="form-group">
+                    <label for="txtidcard" class="text-gray">สถานะบุคคล</label>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="form-group">
+                    <span id="txtidcard">' . $rsconnect["status_person"] . '</span>
                 </div>
             </div>
         </div>';
