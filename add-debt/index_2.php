@@ -1,6 +1,5 @@
 <?php include('../include/header.php') ?>
 <link rel="stylesheet" href="../asset/plugins/bs-stepper/css/bs-stepper.min.css">
-
 <div class="wrapper">
     <?php include("../include/topmenu.php") ?>
     <div class="content-wrapper">
@@ -102,7 +101,7 @@
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">เลขประจำตัวประชาชน :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" autocomplete="yes" class="form-control" id="txtidcard" name="txtidcard" placeholder="เลขประจำตัวประชาชน">
+                                                                <input data-inputmask='"mask": "9-9999-99999-99-9"' data-mask type="text" autocomplete="yes" class="form-control" id="txtidcard" name="txtidcard" placeholder="เลขประจำตัวประชาชน">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -200,7 +199,8 @@
                                                         <div class="form-group row">
                                                             <label for="inputtext3" class="col-md-5 col-form-label text-gray text-sm text-md-right text-sm-end">วันที่เปลี่ยนแปลงสถานะทางบัญชี :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" autocomplete="yes" class="form-control" id="txtstatus_change_date" name="txtstatus_change_date" placeholder="วันที่เปลี่ยนแปลงสถานะทางบัญชี">
+                                                                
+                                                                <input type="text" autocomplete="yes" readOnly class="form-control datepicker" id="txtstatus_change_date" name="txtstatus_change_date" placeholder="วันที่เปลี่ยนแปลงสถานะทางบัญชี">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -218,7 +218,7 @@
                                                         <div class="form-group row">
                                                             <label for="inputtext3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่ขอระงับเรียกให้ชำระหนี้สิ้นสุด :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" autocomplete="yes" class="form-control" id="txtdate_suspend" name="txtdate_suspend" placeholder="วันที่ขอระงับเรียกให้ชำระหนี้สิ้นสุด">
+                                                                <input type="text" autocomplete="yes" class="form-control datepicker" readOnly id="txtdate_suspend" name="txtdate_suspend" placeholder="วันที่ขอระงับเรียกให้ชำระหนี้สิ้นสุด">
                                                             </div>
                                                         </div>
 
@@ -227,7 +227,7 @@
 
                                                     </div>
                                                     <div class="col-12 text-center mt-2">
-                                                        <button class="btn btn-default" onclick="stepper.previous()">
+                                                        <button class="btn btn-default" type="button" onclick="stepper.previous()">
                                                             <i class="fas fa-arrow-left"></i>
                                                             ย้อนกลับ
                                                         </button>
@@ -248,7 +248,7 @@
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่สิ้นสุดสัญญา :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" autocomplete="yes" class="form-control" id="txtdate_contract" name="txtdate_contract" placeholder="วันที่สิ้นสุดสัญญา ">
+                                                                <input type="text" autocomplete="yes" class="form-control datepicker"  readOnly id="txtdate_contract" name="txtdate_contract" placeholder="วันที่สิ้นสุดสัญญา ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -266,19 +266,19 @@
                                                         <div class="form-group row">
                                                             <label for="inputtext3" class="col-md-5 col-form-label text-gray text-sm text-md-right text-sm-end">วันครบกำหนดชำระหนี้ครั้งแรก :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" autocomplete="yes" class="form-control" id="txtdatestart_payment" name="txtdatestart_payment" placeholder="วันครบกำหนดชำระหนี้ครั้งแรก">
+                                                                <input type="text" autocomplete="yes" class="form-control datepicker" readOnly id="txtdatestart_payment" name="txtdatestart_payment" placeholder="วันครบกำหนดชำระหนี้ครั้งแรก">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputtext3" class="col-md-5 col-form-label text-gray text-sm text-md-right text-sm-end">วันที่ครบกำหนดชำระครั้งสุดท้าย :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" autocomplete="yes" class="form-control" id="txtdateend_payment" name="txtdateend_payment" placeholder="วันที่ครบกำหนดชำระครั้งสุดท้าย">
+                                                                <input type="text" autocomplete="yes" class="form-control datepicker" readOnly id="txtdateend_payment" name="txtdateend_payment" placeholder="วันที่ครบกำหนดชำระครั้งสุดท้าย">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputtext3" class="col-md-5 col-form-label text-gray text-sm text-md-right text-sm-end">วันที่คำนวณดอกเบี้ยครั้งแรก :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" autocomplete="yes" class="form-control" id="txtdatecal_interest" name="txtdatecal_interest" placeholder="วันที่คำนวณดอกเบี้ยครั้งแรก">
+                                                                <input type="text" autocomplete="yes" class="form-control datepicker" readOnly id="txtdatecal_interest" name="txtdatecal_interest" placeholder="วันที่คำนวณดอกเบี้ยครั้งแรก">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -398,7 +398,7 @@
 
                                                     </div>
                                                     <div class="col-12 text-center mt-2">
-                                                        <button class="btn btn-default" onclick="stepper.previous()">
+                                                        <button class="btn btn-default" type="button" onclick="stepper.previous()">
                                                             <i class="fas fa-arrow-left"></i>
                                                             ย้อนกลับ
                                                         </button>
@@ -430,7 +430,7 @@
                                                             <tr>
                                                                 <td>1</td>
                                                                 <td>
-                                                                    <input type="text" autocomplete="yes" class="form-control" id="txtlname" placeholder="กำหนดชำระ">
+                                                                    <input type="text" autocomplete="yes" class="form-control datepicker" readOnly id="txtlname" placeholder="กำหนดชำระ">
                                                                 </td>
                                                                 <td>
                                                                     <input type="text" autocomplete="yes" class="form-control" id="txtlname" placeholder="สัดสวนเงินต้น %">
@@ -447,7 +447,7 @@
                                                                 <td class="text-right py-0 align-middle">
                                                                     <div class="btn-group btn-group-sm">
                                                                         <a href="#" class="btn btn-primary" onclick="addRowSchedule()"><i class="fas fa-plus"></i></a>
-                                                                        <a href="#" class="btn btn-danger" onclick="deleteRowSchedule(this)"><i class="fas fa-trash"></i></a>
+                                                                        <a href="#" class="btn btn-danger" onclick="deleteRow(this)"><i class="fas fa-trash"></i></a>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -456,7 +456,7 @@
                                                 </div>
                                                 <div class="col-12 text-center mt-2">
                                                     <p style="color: red;" id="error_payment_schedule"></p>
-                                                    <button class="btn btn-default" onclick="stepper.previous()">
+                                                    <button class="btn btn-default" type="button" onclick="stepper.previous()">
                                                         <i class="fas fa-arrow-left"></i>
                                                         ย้อนกลับ
                                                     </button>
@@ -489,7 +489,7 @@
                                                             <tr>
                                                                 <td>1</td>
                                                                 <td>
-                                                                    <input type="text" autocomplete="yes" class="form-control" id="txtlname" placeholder="กำหนดชำระ">
+                                                                    <input type="text" autocomplete="yes" readOnly class="form-control datepicker" id="txtlname" placeholder="กำหนดชำระ">
                                                                 </td>
                                                                 <td>
                                                                     <input type="text" autocomplete="yes" class="form-control" id="txtlname" placeholder="ยอดรวมที่ต้องชำระ">
@@ -504,7 +504,7 @@
                                                                     <input type="text" autocomplete="yes" class="form-control" id="txtlname" placeholder="สถานะ">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" autocomplete="yes" class="form-control" id="txtlname" placeholder="วันที่ชำระครั้งล่าสุด">
+                                                                    <input type="text" autocomplete="yes" readOnly class="form-control datepicker" id="txtlname" placeholder="วันที่ชำระครั้งล่าสุด">
                                                                 </td>
                                                                 <td>
                                                                     <input type="text" autocomplete="yes" class="form-control" id="txtlname" placeholder="ยอดค้างชำระ">
@@ -521,9 +521,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 text-center mt-2">
-                                            <p style="color: red;" id="error_payment_due"></p>
-                                                    
-                                                <button class="btn btn-default" onclick="stepper.previous()">
+                                                <p style="color: red;" id="error_payment_due"></p>
+
+                                                <button class="btn btn-default" type="button" onclick="stepper.previous()">
                                                     <i class="fas fa-arrow-left"></i>
                                                     ย้อนกลับ
                                                 </button>
@@ -557,18 +557,16 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td colspan="6">ยังไม่มีข้อมูล</td>
-                                                            </tr>
+                                                            
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <div class="col-12 text-center mt-2">
-                                                    <button class="btn btn-default" onclick="stepper.previous()">
+                                                    <button class="btn btn-default" type="button" onclick="stepper.previous()">
                                                         <i class="fas fa-arrow-left"></i>
                                                         ย้อนกลับ
                                                     </button>
-                                                    <button class="btn btn-primary" onclick="stepper.next()">
+                                                    <button class="btn btn-primary" type="button" onclick="checkGuarantor()">
                                                         <i class="fas fa-arrow-right"></i>
                                                         ถัดไป
                                                     </button>
@@ -618,7 +616,7 @@
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่ฟ้องร้อง :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="วันที่ฟ้องร้อง ">
+                                                                <input type="email" autocomplete="yes" readOnly class="form-control datepicker" id="inputEmail3" placeholder="วันที่ฟ้องร้อง ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -630,13 +628,13 @@
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่สถานะคดี :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="วันที่สถานะคดี ">
+                                                                <input type="email" autocomplete="yes" readOnly class="form-control datepicker" id="inputEmail3" placeholder="วันที่สถานะคดี ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่ตั้งงานคดี :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="วันที่ตั้งงานคดี ">
+                                                                <input type="email" autocomplete="yes" readOnly class="form-control datepicker" id="inputEmail3" placeholder="วันที่ตั้งงานคดี ">
                                                             </div>
                                                         </div>
                                                         <!--  -->
@@ -652,20 +650,15 @@
                                                                 <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="สถานะจาก LEGAL ">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่ตั้งงานคดี :</label>
-                                                            <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="วันที่ตั้งงานคดี ">
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </form>
                                                 </div>
                                                 <div class="col-12 text-center mt-2">
-                                                    <button class="btn btn-default" onclick="stepper.previous()">
+                                                    <button class="btn btn-default" type="button" onclick="stepper.previous()">
                                                         <i class="fas fa-arrow-left"></i>
                                                         ย้อนกลับ
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -694,65 +687,68 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12">
-                                <form>
+                                <form id="guarantor-form">
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">คำนำหน้าชื่อ :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="คำนำหน้าชื่อ">
+                                            <input type="email" autocomplete="yes" class="form-control" id="txtprefix" name="txtprefix" placeholder="คำนำหน้าชื่อ">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">ชื่อ :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ชื่อ">
+                                            <input type="email" autocomplete="yes" class="form-control" id="txtfname" name="txtfname" placeholder="ชื่อ">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">นามสกุล :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="นามสกุล">
+                                            <input type="email" autocomplete="yes" class="form-control" id="txtlname" name="txtlname" placeholder="นามสกุล">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">ความสัมพันธ์กับผู้กู้ :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ความสัมพันธ์กับผู้กู้">
+                                            <input type="email" autocomplete="yes" class="form-control" id="txtrelationship" name="txtrelationship" placeholder="ความสัมพันธ์กับผู้กู้">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">หมายเลขบัตรประจำตัวประชาชน :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="หมายเลขบัตรประจำตัวประชาชน">
+                                            <input type="email" autocomplete="yes" class="form-control" id="txtidcard" name="txtidcard" placeholder="หมายเลขบัตรประจำตัวประชาชน">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">ภาระค้ำประกัน(%) :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ภาระค้ำประกัน(%)">
+                                            <input type="email" autocomplete="yes" class="form-control" id="txtguarantee_percentage" name="txtguarantee_percentage" placeholder="ภาระค้ำประกัน(%)">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">ภาระค้ำประกัน(จำนวนเงิน) :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ภาระค้ำประกัน(จำนวนเงิน)">
+                                            <input type="email" autocomplete="yes" class="form-control" id="txtguarantee_amount" name="txtguarantee_amount" placeholder="ภาระค้ำประกัน(จำนวนเงิน)">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">วัน/เดือน/ปี เกิด :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="วัน/เดือน/ปี เกิด">
+                                            <input type="email" autocomplete="yes" class="form-control datepicker" readOnly id="txtbirthday" name="txtbirthday" placeholder="วัน/เดือน/ปี เกิด">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">เพศ :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="เพศ">
+                                            <select id="txtgender" name="txtgender">
+                                                <option value="M">ชาย</option>
+                                                <option value="F">หญิง</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">สถานะบุคคล :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="สถานะบุคคล">
+                                            <input type="email" autocomplete="yes" class="form-control" id="txtstatus_person" name="txtstatus_person" placeholder="สถานะบุคคล">
                                         </div>
                                     </div>
                                 </form>
@@ -769,14 +765,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <td><input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ประเภทที่อยู่ "></td>
-                                        <td><input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ที่อยู่ "></td>
-                                        <td><input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="รหัสไปรษณีย์ "></td>
-                                        <td><input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="เบอร์โทรศัพท์ "></td>
+                                        <td><input type="text" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ประเภทที่อยู่ "></td>
+                                        <td><input type="text" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ที่อยู่ "></td>
+                                        <td><input type="text" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="รหัสไปรษณีย์ "></td>
+                                        <td><input type="text" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="เบอร์โทรศัพท์ "></td>
                                         <td class="text-right py-0 align-middle">
                                             <div class="btn-group btn-group-sm">
-                                                <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i></a>
-                                                <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                <a href="#" class="btn btn-primary" onclick="addRowGuarantor()"><i class="fas fa-plus"></i></a>
+                                                <a href="#" class="btn btn-danger" onclick="deleteRowGuarantor(this)"><i class="fas fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tbody>
@@ -790,9 +786,9 @@
                             <i class="fas fa-arrow-left"></i>
                             ปิด
                         </button>
-                        <button class="btn btn-primary" type="stepper.next()">
+                        <button class="btn btn-primary" type="button" onclick="addGuarantor()">
                             <i class="fas fa-arrow-check"></i>
-                            บันทึกข้อมูล
+                            เพิ่มข้อมูล
                         </button>
                     </div>
                 </div>
@@ -805,16 +801,30 @@
 <?php include("../include/script.php") ?>
 <script src="../asset/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <script src="../asset/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../asset/plugins/moment/moment.min.js"></script>
+<script src="../asset/plugins/inputmask/jquery.inputmask.min.js"></script>
+<link href="../asset/datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+<script src="../asset/datepicker/js/bootstrap-datepicker-custom.js"></script>
+<script src="../asset/datepicker/locales/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
+
 <script src="formvalid.js"></script>
 <script src="tbpayment_schedule.js"></script>
 <script src="tbpayment_due.js"></script>
+<script src="tbguarantoraddress.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         window.stepper = new Stepper(document.querySelector('.bs-stepper'))
     });
-
+    $('[data-mask]').inputmask();
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        todayBtn: true,
+        language: 'th', //เปลี่ยน label ต่างของ ปฏิทิน ให้เป็น ภาษาไทย   (ต้องใช้ไฟล์ bootstrap-datepicker.th.min.js นี้ด้วย)
+        thaiyear: true //Set เป็นปี พ.ศ.
+    }) 
     function checkDebtdetail() {
-        //  if ($('#debt-detailForm').valid()) {
+        //   if ($('#debt-detailForm').valid()) {
         stepper.next()
 
 
@@ -822,9 +832,9 @@
     }
 
     function checkAccountdetail() {
-        //  if ($('#account-detailForm').valid()) {
+        //   if ($('#account-detailForm').valid()) {
         stepper.next()
-        //  }
+        //   }
     }
 
     function checkAccountdata() {
@@ -833,66 +843,79 @@
         // }
     }
 
+    
+
     function checkPayment_schedule() {
-        var isValid = true;
+        // var isValid = true;
 
-        $('#tbPayment_schedule tbody tr').each(function() {
-            var inputs = $(this).find('input');
-            inputs.each(function() {
-                if ($(this).val() === '') {
-                    isValid = false;
-                    return false;
-                }
-            });
+        // $('#tbPayment_schedule tbody tr').each(function() {
+        //     var inputs = $(this).find('input');
+        //     inputs.each(function() {
+        //         if ($(this).val() === '') {
+        //             isValid = false;
+        //             return false;
+        //         }
+        //     });
 
-            if (!isValid) {
-                return false;
-            }
-        });
+        //     if (!isValid) {
+        //         return false;
+        //     }
+        // });
 
-        if (isValid) {
-            $('#error_payment_schedule').text('')
+        // if (isValid) {
+        //     $('#error_payment_schedule').text('')
             stepper.next()
-        } else {
-            $('#error_payment_schedule').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
-        }
+        // } else {
+        //     $('#error_payment_schedule').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
+        // }
     }
 
     function checkPayment_due() {
-       var isValid = true;
+        // var isValid = true;
 
-        $('#tbPayment_due tbody tr').each(function() {
-            var inputs = $(this).find('input');
-            inputs.each(function() {
-                if ($(this).val() === '') {
-                    isValid = false;
-                    return false;
-                }
-            });
+        // $('#tbPayment_due tbody tr').each(function() {
+        //     var inputs = $(this).find('input');
+        //     inputs.each(function() {
+        //         if ($(this).val() === '') {
+        //             isValid = false;
+        //             return false;
+        //         }
+        //     });
 
-            if (!isValid) {
-                return false;
-            }
-        });
+        //     if (!isValid) {
+        //         return false;
+        //     }
+        // });
 
-        if (isValid) {
-            $('#error_payment_due').text('')
-            stepper.next()
-        } else {
-            $('#error_payment_due').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
-        }
-           
+        // if (isValid) {
+        //     $('#error_payment_due').text('')
+             stepper.next()
+        // } else {
+        //     $('#error_payment_due').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
+        // }
+
     }
 
 
+    function checkGuarantor(){
+        var rowCount = $('#tbGuarantor tbody tr').length;
+        console.log(rowCount)
+        if(rowCount<=0){
+            alert("โปรดเพิ่มข้อมูลผู้ค้ำประกันอย่างน้อย 1 คนค่ะ")
+        }
+    }
 
 
+    function addGuarantor(){
+
+    }
 
 
     $.validator.addMethod("alphanumeric", function(value, element) {
-        return this.optional(element) || /^[0-9]+$/.test(value);
+        return this.optional(element) || /^[0-9-]+$/.test(value);
     }, "โปรดกรอกข้อมูลที่มีเฉพาะตัวเลขและตัวอักษร (a-z)");
 </script>
 </body>
 
 </html>
+
