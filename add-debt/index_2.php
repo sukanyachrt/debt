@@ -1,5 +1,6 @@
 <?php include('../include/header.php') ?>
 <link rel="stylesheet" href="../asset/plugins/bs-stepper/css/bs-stepper.min.css">
+
 <div class="wrapper">
     <?php include("../include/topmenu.php") ?>
     <div class="content-wrapper">
@@ -199,7 +200,7 @@
                                                         <div class="form-group row">
                                                             <label for="inputtext3" class="col-md-5 col-form-label text-gray text-sm text-md-right text-sm-end">วันที่เปลี่ยนแปลงสถานะทางบัญชี :</label>
                                                             <div class="col-sm-7">
-                                                                
+
                                                                 <input type="text" autocomplete="yes" readOnly class="form-control datepicker" id="txtstatus_change_date" name="txtstatus_change_date" placeholder="วันที่เปลี่ยนแปลงสถานะทางบัญชี">
                                                             </div>
                                                         </div>
@@ -248,7 +249,7 @@
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่สิ้นสุดสัญญา :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" autocomplete="yes" class="form-control datepicker"  readOnly id="txtdate_contract" name="txtdate_contract" placeholder="วันที่สิ้นสุดสัญญา ">
+                                                                <input type="text" autocomplete="yes" class="form-control datepicker" readOnly id="txtdate_contract" name="txtdate_contract" placeholder="วันที่สิ้นสุดสัญญา ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -549,15 +550,14 @@
                                                             <tr>
                                                                 <th class="text-center">ชื่อผู้ค้ำประกัน</th>
                                                                 <th class="text-center">ความสัมพันธ์กับผู้กู้</th>
-                                                                <th class="text-center">ความสัมพันธ์กับผู้กู้</th>
                                                                 <th class="text-center">หมายเลขบัตรประจำตัวประชาชน</th>
                                                                 <th class="text-center">ภาระค้ำประกัน(%)</th>
                                                                 <th class="text-center"> ภาระค้ำประกัน(จำนวนเงิน)</th>
-
+                                                                <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -576,81 +576,81 @@
                                         <div id="litigation" class="content" role="tabpanel" aria-labelledby="litigation-trigger">
                                             <div class="row">
                                                 <div class="col-sm-8">
-                                                    <form>
+                                                    <form id="litigation-form">
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">เลขคดี (LG ID) :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="เลขคดี (LG ID) ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtlg_id" name="txtlg_id" placeholder="เลขคดี (LG ID) ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">ศาล :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ศาล ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtcourt" name="txtcourt" placeholder="ศาล ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">สำนักงานทนายความ :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="สำนักงานทนายความ ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtlawyer_office" name="txtlawyer_office" placeholder="สำนักงานทนายความ ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">เบอร์โทรศัพท์ :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="เบอร์โทรศัพท์ ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtphone_number" name="txtphone_number" placeholder="เบอร์โทรศัพท์ ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">หมายเลขคดีดำ :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="หมายเลขคดีดำ ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtblack_case_number" name="txtblack_case_number" placeholder="หมายเลขคดีดำ ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">หมายเลขคดีแดง :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="หมายเลขคดีแดง ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtred_case_number" name="txtred_case_number" placeholder="หมายเลขคดีแดง ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่ฟ้องร้อง :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" readOnly class="form-control datepicker" id="inputEmail3" placeholder="วันที่ฟ้องร้อง ">
+                                                                <input type="text" autocomplete="yes" readOnly class="form-control datepicker" id="txtfiling_date" name="txtfiling_date" placeholder="วันที่ฟ้องร้อง ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">ครั้งที่ของการดำเนินคดี :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="ครั้งที่ของการดำเนินคดี ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtcase_iteration" name="txtcase_iteration" placeholder="ครั้งที่ของการดำเนินคดี ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่สถานะคดี :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" readOnly class="form-control datepicker" id="inputEmail3" placeholder="วันที่สถานะคดี ">
+                                                                <input type="text" autocomplete="yes" readOnly class="form-control datepicker" id="txtcase_status_date" name="txtcase_status_date" placeholder="วันที่สถานะคดี ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">วันที่ตั้งงานคดี :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" readOnly class="form-control datepicker" id="inputEmail3" placeholder="วันที่ตั้งงานคดี ">
+                                                                <input type="text" autocomplete="yes" readOnly class="form-control datepicker" id="txtcase_setup_date" name="txtcase_setup_date" placeholder="วันที่ตั้งงานคดี ">
                                                             </div>
                                                         </div>
                                                         <!--  -->
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">สถานะคดี :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="สถานะคดี ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtcase_status" name="txtcase_status" placeholder="สถานะคดี ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="inputEmail3" class="col-md-5 col-form-label text-gray text-sm text-md-right">สถานะจาก LEGAL :</label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" autocomplete="yes" class="form-control" id="inputEmail3" placeholder="สถานะจาก LEGAL ">
+                                                                <input type="text" autocomplete="yes" class="form-control" id="txtlegal_status" name="txtlegal_status" placeholder="สถานะจาก LEGAL ">
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </form>
                                                 </div>
                                                 <div class="col-12 text-center mt-2">
@@ -658,7 +658,7 @@
                                                         <i class="fas fa-arrow-left"></i>
                                                         ย้อนกลับ
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
+                                                    <button type="button" onclick="checkIitigation()" class="btn btn-primary">บันทึกข้อมูล</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -691,55 +691,62 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">คำนำหน้าชื่อ :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="txtprefix" name="txtprefix" placeholder="คำนำหน้าชื่อ">
+                                            <select id="txtprefix" name="txtprefix" class="form-control">
+                                                <option value="">เลือก</option>
+                                                <option value="นาย">นาย</option>
+                                                <option value="นาง">นาง</option>
+                                                <option value="นางสาว">นางสาว</option>
+                                            </select>
+
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">ชื่อ :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="txtfname" name="txtfname" placeholder="ชื่อ">
+                                            <input type="text" autocomplete="yes" class="form-control" id="txtfname" name="txtfname" placeholder="ชื่อ">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">นามสกุล :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="txtlname" name="txtlname" placeholder="นามสกุล">
+                                            <input type="text" autocomplete="yes" class="form-control" id="txtlname" name="txtlname" placeholder="นามสกุล">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">ความสัมพันธ์กับผู้กู้ :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="txtrelationship" name="txtrelationship" placeholder="ความสัมพันธ์กับผู้กู้">
+                                            <input type="text" autocomplete="yes" class="form-control" id="txtrelationship" name="txtrelationship" placeholder="ความสัมพันธ์กับผู้กู้">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">หมายเลขบัตรประจำตัวประชาชน :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="txtidcard" name="txtidcard" placeholder="หมายเลขบัตรประจำตัวประชาชน">
+                                            <input type="text" autocomplete="yes" data-inputmask='"mask": "9-9999-99999-99-9"' data-mask class="form-control" id="txtidcard" name="txtidcard" placeholder="หมายเลขบัตรประจำตัวประชาชน">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">ภาระค้ำประกัน(%) :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="txtguarantee_percentage" name="txtguarantee_percentage" placeholder="ภาระค้ำประกัน(%)">
+                                            <input type="text" autocomplete="yes" class="form-control" id="txtguarantee_percentage" name="txtguarantee_percentage" placeholder="ภาระค้ำประกัน(%)">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">ภาระค้ำประกัน(จำนวนเงิน) :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="txtguarantee_amount" name="txtguarantee_amount" placeholder="ภาระค้ำประกัน(จำนวนเงิน)">
+                                            <input type="text" autocomplete="yes" class="form-control" id="txtguarantee_amount" name="txtguarantee_amount" placeholder="ภาระค้ำประกัน(จำนวนเงิน)">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">วัน/เดือน/ปี เกิด :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control datepicker" readOnly id="txtbirthday" name="txtbirthday" placeholder="วัน/เดือน/ปี เกิด">
+                                            <input type="text" autocomplete="yes" class="form-control datepicker" readOnly id="txtbirthday" name="txtbirthday" placeholder="วัน/เดือน/ปี เกิด">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">เพศ :</label>
                                         <div class="col-sm-6">
-                                            <select id="txtgender" name="txtgender">
+                                            <select id="txtgender" name="txtgender" class="form-control">
+                                                <option value="">เลือก</option>
                                                 <option value="M">ชาย</option>
                                                 <option value="F">หญิง</option>
                                             </select>
@@ -748,7 +755,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label text-gray text-sm text-md-right">สถานะบุคคล :</label>
                                         <div class="col-sm-6">
-                                            <input type="email" autocomplete="yes" class="form-control" id="txtstatus_person" name="txtstatus_person" placeholder="สถานะบุคคล">
+                                            <input type="text" autocomplete="yes" class="form-control" id="txtstatus_person" name="txtstatus_person" placeholder="สถานะบุคคล">
                                         </div>
                                     </div>
                                 </form>
@@ -778,19 +785,22 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col-12 text-center mt-2">
+                                <p style="color: red;" id="error_Guarantor_address"></p>
+
+                                <button class="btn btn-default" data-dismiss="modal">
+                                    <i class="fas fa-arrow-left"></i>
+                                    ปิด
+                                </button>
+                                <button class="btn btn-primary" type="button" onclick="addGuarantor()">
+                                    <i class="fas fa-arrow-check"></i>
+                                    เพิ่มข้อมูล
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer justify-content-center">
 
-                        <button class="btn btn-default" data-dismiss="modal">
-                            <i class="fas fa-arrow-left"></i>
-                            ปิด
-                        </button>
-                        <button class="btn btn-primary" type="button" onclick="addGuarantor()">
-                            <i class="fas fa-arrow-check"></i>
-                            เพิ่มข้อมูล
-                        </button>
-                    </div>
+
                 </div>
 
             </div>
@@ -811,7 +821,8 @@
 <script src="tbpayment_schedule.js"></script>
 <script src="tbpayment_due.js"></script>
 <script src="tbguarantoraddress.js"></script>
-
+<script src="formguarantor.js"></script>
+<script src="formlitigation.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         window.stepper = new Stepper(document.querySelector('.bs-stepper'))
@@ -822,52 +833,51 @@
         todayBtn: true,
         language: 'th', //เปลี่ยน label ต่างของ ปฏิทิน ให้เป็น ภาษาไทย   (ต้องใช้ไฟล์ bootstrap-datepicker.th.min.js นี้ด้วย)
         thaiyear: true //Set เป็นปี พ.ศ.
-    }) 
+    })
+
     function checkDebtdetail() {
         //   if ($('#debt-detailForm').valid()) {
         stepper.next()
-
-
         // }
     }
 
     function checkAccountdetail() {
-        //   if ($('#account-detailForm').valid()) {
+        // if ($('#account-detailForm').valid()) {
         stepper.next()
-        //   }
+        // }
     }
 
     function checkAccountdata() {
         //  if ($('#account-dataForm').valid()) {
         stepper.next()
-        // }
+        //  }
     }
 
-    
+
 
     function checkPayment_schedule() {
-        // var isValid = true;
+        var isValid = true;
 
-        // $('#tbPayment_schedule tbody tr').each(function() {
-        //     var inputs = $(this).find('input');
-        //     inputs.each(function() {
-        //         if ($(this).val() === '') {
-        //             isValid = false;
-        //             return false;
-        //         }
-        //     });
+        $('#tbPayment_schedule tbody tr').each(function() {
+            var inputs = $(this).find('input');
+            inputs.each(function() {
+                if ($(this).val() === '') {
+                    isValid = false;
+                    return false;
+                }
+            });
 
-        //     if (!isValid) {
-        //         return false;
-        //     }
-        // });
+            if (!isValid) {
+                return false;
+            }
+        });
 
-        // if (isValid) {
-        //     $('#error_payment_schedule').text('')
+        if (isValid) {
+            $('#error_payment_schedule').text('')
             stepper.next()
-        // } else {
-        //     $('#error_payment_schedule').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
-        // }
+        } else {
+            $('#error_payment_schedule').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
+        }
     }
 
     function checkPayment_due() {
@@ -875,7 +885,13 @@
 
         // $('#tbPayment_due tbody tr').each(function() {
         //     var inputs = $(this).find('input');
-        //     inputs.each(function() {
+
+
+        //     inputs.each(function(index) {
+        //         if (index === 5) {
+        //             return true;
+        //         }
+
         //         if ($(this).val() === '') {
         //             isValid = false;
         //             return false;
@@ -889,27 +905,186 @@
 
         // if (isValid) {
         //     $('#error_payment_due').text('')
-             stepper.next()
+        stepper.next()
         // } else {
         //     $('#error_payment_due').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
         // }
 
+
     }
 
 
-    function checkGuarantor(){
-        var rowCount = $('#tbGuarantor tbody tr').length;
-        console.log(rowCount)
-        if(rowCount<=0){
-            alert("โปรดเพิ่มข้อมูลผู้ค้ำประกันอย่างน้อย 1 คนค่ะ")
+    function checkGuarantor() {
+        // var rowCount = $('#tbGuarantor tbody tr').length;
+
+        // if (rowCount <= 0) {
+        //     alert("โปรดเพิ่มข้อมูลผู้ค้ำประกันอย่างน้อย 1 คนค่ะ")
+        // } else {
+        stepper.next();
+        // }
+    }
+
+    let dataGuarantor = [];
+
+    function addGuarantor() {
+
+        if ($('#guarantor-form').valid()) {
+            var isValid = true;
+
+            $('#tbGuarantor_address tbody tr').each(function() {
+                var inputs = $(this).find('input');
+                inputs.each(function() {
+                    if ($(this).val() === '') {
+                        isValid = false;
+                        return false;
+                    }
+                });
+
+                if (!isValid) {
+                    return false;
+                }
+            });
+
+            if (isValid) {
+                guarantor();
+
+            } else {
+                $('#error_Guarantor_address').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
+            }
+
         }
     }
 
+    function checkIitigation() {
+        // if ($('#litigation-form').valid()) {
 
-    function addGuarantor(){
+
+        // data: {
+        //     'debtFormData': $('#debt-detailForm').serialize(),
+        //account-dataForm
+        //     'accountFormData': $('#account-detailForm').serialize(),
+        //     'payment_schedule': tbPayment_schedule,
+        //     'payment_due': tbPayment_due,
+        //     'Guarantor': dataGuarantor,
+        //     'account': $('#account-dataForm'),
+        //     'litigation': $('#litigation-form')
+
+
+
+        // },
+
+
+        $.ajax({
+            async: true,
+            url: "../services/debt-account/data.php?v=insertdebt",
+            type: "POST",
+            cache: false,
+            data: $('#debt-detailForm').serialize(),
+            success: function(Res) {
+                if (Res.id > 0) {
+                    var account_type = $('#debt-detailForm [name="txttype_account"]').val()
+                    var no_account = $('#debt-detailForm [name="txtno_account"]').val()
+                    $.ajax({
+                        async: true,
+                        url: "../services/debt-account/data.php?v=insertaccount_debt&id=" + Res.id + "&account_type=" + account_type + "&no_account=" + no_account,
+                        type: "POST",
+                        cache: false,
+                        data: $('#account-detailForm').serialize(),
+                        success: function(Res) {
+                            console.log(Res)
+                            if (Res.id > 0) {
+                                $.ajax({
+                                    async: true,
+                                    url: "../services/debt-account/data.php?v=insertaccount_data&id=" + Res.id,
+                                    type: "POST",
+                                    cache: false,
+                                    data: $('#account-dataForm').serialize(),
+                                    success: function(Res) {
+
+                                        if (Res.id > 0) {
+
+                                            let tbPayment_schedule = [];
+                                            $('#tbPayment_schedule tbody tr').each(function() {
+                                                var due_date = $(this).find('td:eq(1) input[type="text"]').val();
+                                                var principal_percentage = $(this).find('td:eq(2) input[type="text"]').val();
+                                                var principal_amount = $(this).find('td:eq(3) input[type="text"]').val();
+                                                var interest_amount = $(this).find('td:eq(4) input[type="text"]').val();
+                                                tbPayment_schedule.push({
+                                                    'due_date': due_date,
+                                                    'principal_percentage': principal_percentage,
+                                                    'principal_amount': principal_amount,
+                                                    'interest_amount': interest_amount,
+                                                });
+                                            });
+
+
+                                            $.ajax({
+                                                async: true,
+                                                url: "../services/debt-account/data.php?v=insertpayment_schedule&id=" + Res.id,
+                                                type: "POST",
+                                                cache: false,
+                                                data: {
+                                                    payment_schedule: JSON.stringify(tbPayment_schedule)
+                                                },
+                                                success: function(Res) {
+
+                                                    if (Res.id > 0) {
+                                                        //insert 
+                                                        let tbPayment_due = [];
+                                                        $('#tbPayment_due tbody tr').each(function() {
+                                                            var due_date = $(this).find('td:eq(1) input[type="text"]').val();
+                                                            var total_payment_due = $(this).find('td:eq(2) input[type="text"]').val();
+                                                            var interest_amount = $(this).find('td:eq(3) input[type="text"]').val();
+                                                            var principal_amount = $(this).find('td:eq(4) input[type="text"]').val();
+                                                            var status = $(this).find('td:eq(5) input[type="text"]').val();
+                                                            var last_payment_date = $(this).find('td:eq(6) input[type="text"]').val();
+                                                            var overdue_amount = $(this).find('td:eq(7) input[type="text"]').val();
+
+                                                            tbPayment_due.push({
+                                                                'due_date': due_date,
+                                                                'total_payment_due': total_payment_due,
+                                                                'interest_amount': interest_amount,
+                                                                'principal_amount': principal_amount,
+                                                                'status': status,
+                                                                'last_payment_date': last_payment_date,
+                                                                'overdue_amount': overdue_amount
+                                                            });
+                                                        });
+                                                        $.ajax({
+                                                            async: true,
+                                                            url: "../services/debt-account/data.php?v=insertpayment_due&id=" + Res.id,
+                                                            type: "POST",
+                                                            cache: false,
+                                                            data: {
+                                                                payment_due: JSON.stringify(tbPayment_due)
+                                                            },
+                                                            success: function(Res) {
+                                                                console.log(Res);
+
+                                                            }
+                                                        });
+
+
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                    }
+                                });
+
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
+        //   }
+
+
 
     }
-
 
     $.validator.addMethod("alphanumeric", function(value, element) {
         return this.optional(element) || /^[0-9-]+$/.test(value);
@@ -918,4 +1093,3 @@
 </body>
 
 </html>
-

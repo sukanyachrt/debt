@@ -132,7 +132,7 @@ $id = $_GET['id'];
                                                                             <th class="text-center">กำหนดชำระ</th>
                                                                             <th class="text-center">สัดสวนเงินต้น % </th>
                                                                             <th class="text-center">เงินต้น</th>
-                                                                            <th class="text-center">ดอกเบีย</th>
+                                                                            <th class="text-center">ดอกเบี้ย</th>
                                                                             <th class="text-center">ยอดรวมที่ต้องชำระ</th>
 
                                                                         </tr>

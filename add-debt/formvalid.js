@@ -78,18 +78,7 @@ $('#debt-detailForm').validate({
     unhighlight: function(element, errorClass, validClass) {
         $(element).removeClass('is-invalid');
     },
-    submitHandler: function(form) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("load-account-detail").innerHTML = this.responseText;
-                stepper.next()
-            }
-        };
-        xhttp.open("GET", "account-detail.php", true);
-        xhttp.send();
-
-    }
+   
 });
 $('#account-detailForm').validate({
     rules: {
@@ -114,9 +103,9 @@ $('#account-detailForm').validate({
         txtrequest_suspend: {
             required: true,
         },
-        txtdate_suspend: {
-            required: true,
-        },
+        // txtdate_suspend: {
+        //     required: true,
+        // },
 
     },
     messages: {
@@ -140,9 +129,9 @@ $('#account-detailForm').validate({
         txtrequest_suspend: {
             required: "การขอระงับเรียกให้ชำระหนี้  ",
         },
-        txtdate_suspend: {
-            required: "วันที่ขอระงับเรียกให้ชำระหนี้สิ้นสุด ",
-        },
+        // txtdate_suspend: {
+        //     required: "วันที่ขอระงับเรียกให้ชำระหนี้สิ้นสุด ",
+        // },
 
     },
     errorElement: 'span',
@@ -181,7 +170,7 @@ $('#account-dataForm').validate({
         },
         txtdateend_payment: {
             required: true,
-            alphanumeric: true,
+           
         },
         txtdatecal_interest: {
             required: true,
