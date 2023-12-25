@@ -820,9 +820,8 @@
                         <p id="showAlert"></p>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-danger">ตกลง</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-
+                        <button type="button" onclick="alertYes()"  class="btn btn-primay">ตกลง</button>
+                        
                     </div>
                 </div>
             </div>
@@ -1092,9 +1091,7 @@
                                                                                             if (Res.id > 0) {
                                                                                                 $('#showAlert').text('บันทึกข้อมูลแล้วค่ะ')
                                                                                                 $('#modal-alert').modal('show');
-                                                                                                setTimeout(function() {
-                                                                                                    window.location.replace('../debt-account/');
-                                                                                                }, 5000);
+                                                                                                window.location.replace('../debt-account/');
                                                                                             }
                                                                                         }
                                                                                     });
@@ -1126,6 +1123,17 @@
         }
 
 
+
+    }
+
+    function alertYes(data){
+        if($('#showAlert')=="yes"){
+            window.location.replace('../debt-account/');
+        }
+        
+        else{
+            $('#modal-alert').modal('hide');
+        }
 
     }
 

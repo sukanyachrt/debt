@@ -214,7 +214,7 @@ else if ($data == "insertdebt") {
 			if ($value) {
 				$connect->sql = "INSERT INTO `guarantor_address`(`guarantor_id`, `address_type`, `address`, `zipcode`, `telephone`) 
 				VALUES ('" . $id . "',
-				'" . $value['type_address'] . "',
+				'" . $value['address_type'] . "',
 				'" . $value['address'] . "',
 				'" . $value['zipcode'] . "',
 				'" . $value['telephone'] . "')";

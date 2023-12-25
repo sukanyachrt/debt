@@ -17,7 +17,7 @@ $('#debt-detailForm').validate({
         },
         txtno_account: {
             required: true,
-            alphanumeric: true,
+            
         },
         txtstatus_account: {
             required: true,

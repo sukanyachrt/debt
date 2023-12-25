@@ -98,7 +98,7 @@ $('#account-detailForm').validate({
         },
         txtrequest_deferral: {
             required: true,
-            alphanumeric: true,
+            
         },
         txtrequest_suspend: {
             required: true,

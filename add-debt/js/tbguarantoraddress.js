@@ -37,7 +37,7 @@ function guarantor() {
         var zipcode = $(this).find('td:eq(2) input[type="text"]').val();
         var telephone = $(this).find('td:eq(3) input[type="text"]').val();
         dataGuarantor_address.push({
-            'type_address': type_address,
+            'address_type': type_address,
             'address': address,
             'zipcode': zipcode,
             'telephone': telephone,
@@ -72,7 +72,7 @@ function guarantor() {
     $('#tbGuarantor tbody').html('')
     dataGuarantor.forEach(function (data, index) {
         $('#tbGuarantor tbody').append(` <tr data-index="${index}">
-        <td class="text-center">${data.prefix}${data.fname}${data.lname}</td>
+        <td class="text-center">${data.prefix} ${data.fname}${data.lname}</td>
         <td class="text-center">${data.relationship}</td>
         <td class="text-center">${data.idcard}</td>
         <td class="text-center">${data.guarantee_percentage}</td>

@@ -530,7 +530,7 @@
             type: "POST",
             success: function(Res) {
                 console.log(Res);
-               // dataGuarantor.push(Res);
+                 dataGuarantor=Res;
                 $('#tbGuarantor tbody').html('')
                 $.each(Res, function(index, data) {
                     $('#tbGuarantor tbody').append(` <tr data-index="${index}">
@@ -546,7 +546,7 @@
                         </td>
                 </tr>`)
                 });
-                
+
             },
 
         });
@@ -701,31 +701,32 @@
 
             $.ajax({
                 async: true,
-                url: "../services/debt-account/data.php?v=insertdebt",
+                url: "../services/edit-debt/data.php?v=editdebt&id=<?php echo $_GET['id'] ?>",
                 type: "POST",
                 cache: false,
                 data: $('#debt-detailForm').serialize(),
                 success: function(Res) {
+                    // console.log(Res)
                     if (Res.id > 0) {
                         var account_type = $('#debt-detailForm [name="txttype_account"]').val()
                         var no_account = $('#debt-detailForm [name="txtno_account"]').val()
                         $.ajax({
                             async: true,
-                            url: "../services/debt-account/data.php?v=insertaccount_debt&id=" + Res.id + "&account_type=" + account_type + "&no_account=" + no_account,
+                            url: "../services/edit-debt/data.php?v=editaccount_debt&id=" + Res.id + "&account_type=" + account_type + "&no_account=" + no_account,
                             type: "POST",
                             cache: false,
                             data: $('#account-detailForm').serialize(),
                             success: function(Res) {
-                                console.log(Res)
+
                                 if (Res.id > 0) {
                                     $.ajax({
                                         async: true,
-                                        url: "../services/debt-account/data.php?v=insertaccount_data&id=" + Res.id,
+                                        url: "../services/edit-debt/data.php?v=editaccount_data&id=" + Res.id,
                                         type: "POST",
                                         cache: false,
                                         data: $('#account-dataForm').serialize(),
                                         success: function(Res) {
-
+                                            //console.log(Res)
                                             if (Res.id > 0) {
 
                                                 let tbPayment_schedule = [];
@@ -745,16 +746,16 @@
 
                                                 $.ajax({
                                                     async: true,
-                                                    url: "../services/debt-account/data.php?v=insertpayment_schedule&id=" + Res.id,
+                                                    url: "../services/edit-debt/data.php?v=editpayment_schedule&id=" + Res.id,
                                                     type: "POST",
                                                     cache: false,
                                                     data: {
                                                         payment_schedule: JSON.stringify(tbPayment_schedule)
                                                     },
                                                     success: function(Res) {
-
+                                                        //console.log(Res)
                                                         if (Res.id > 0) {
-                                                            //insert 
+                                                            //เริ่ม
                                                             let tbPayment_due = [];
                                                             $('#tbPayment_due tbody tr').each(function() {
                                                                 var due_date = $(this).find('td:eq(1) input[type="text"]').val();
@@ -777,7 +778,7 @@
                                                             });
                                                             $.ajax({
                                                                 async: true,
-                                                                url: "../services/debt-account/data.php?v=insertpayment_due&id=" + Res.id,
+                                                                url: "../services/edit-debt/data.php?v=editpayment_due&id=" + Res.id,
                                                                 type: "POST",
                                                                 cache: false,
                                                                 data: {
@@ -785,32 +786,32 @@
                                                                 },
                                                                 success: function(Res) {
                                                                     if (Res.id > 0) {
-                                                                        //ผู้ค้ำประกัน
-
-                                                                        $.ajax({
+                                                                       $.ajax({
                                                                             async: true,
-                                                                            url: "../services/debt-account/data.php?v=insertguarantor&id=" + Res.id,
+                                                                            url: "../services/edit-debt/data.php?v=editguarantor&id=" + Res.id,
                                                                             type: "POST",
                                                                             cache: false,
                                                                             data: {
                                                                                 dataGuarantor: JSON.stringify(dataGuarantor)
                                                                             },
                                                                             success: function(Res) {
+                                                                                console.log(Res)
                                                                                 if (Res.id > 0) {
+
                                                                                     $.ajax({
                                                                                         async: true,
-                                                                                        url: "../services/debt-account/data.php?v=insertlitigation&id=" + Res.id,
+                                                                                        url: "../services/edit-debt/data.php?v=editlitigation&id=" + Res.id,
                                                                                         type: "POST",
                                                                                         cache: false,
                                                                                         data: $('#litigation-form').serialize(),
                                                                                         success: function(Res) {
-
+                                                                                            console.log(Res)
                                                                                             if (Res.id > 0) {
-                                                                                                $('#showAlert').text('บันทึกข้อมูลแล้วค่ะ')
-                                                                                                $('#modal-alert').modal('show');
-                                                                                                setTimeout(function() {
-                                                                                                    window.location.replace('../debt-account/');
-                                                                                                }, 5000);
+                                                                                                // $('#showAlert').text('บันทึกข้อมูลแล้วค่ะ')
+                                                                                                // $('#modal-alert').modal('show');
+                                                                                                // setTimeout(function() {
+                                                                                                //     window.location.replace('../debt-account/');
+                                                                                                // }, 5000);
                                                                                             }
                                                                                         }
                                                                                     });
