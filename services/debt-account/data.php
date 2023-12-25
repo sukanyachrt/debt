@@ -31,10 +31,7 @@ if ($data == "searchdata") {
 	}
 	echo json_encode($result);
 } else if ($data == "insertdebt") {
-	// $debtFormData = $_POST['debtFormData'];
-	// $accountFormData = $_POST['accountFormData'];
-	// parse_str($debtFormData, $debtData);
-	// parse_str($accountFormData, $accountData);
+	
 
 	$connect->sql = "SELECT max(id) as maxid FROM debtor";
 	$connect->queryData();
@@ -50,7 +47,7 @@ if ($data == "searchdata") {
 	 '" . $debt['txtfname'] . "','" . $debt['txtlname'] . "',
 	 '" . $debt['txtno_account'] . "','" . $debt['txtstatus_account'] . "',
 	 '" . $debt['txtstatus_personal'] . "','" . $debt['txttype_account'] . "','[" . json_encode($debt['txttelephone']) . "]')";
-	//$connect->queryData();
+	$connect->queryData();
 
 	echo json_encode(["id" => $id]);
 } else if ($data == "insertaccount_debt") {
@@ -72,7 +69,7 @@ if ($data == "searchdata") {
 	  '" . $account['txtrequest_suspend'] . "',
 	  '" . $account['txtdate_suspend'] . "')";
 
-	//$connect->queryData();
+	$connect->queryData();
 
 	echo json_encode(["id" => $_GET['id']]);
 } else if ($data == "insertaccount_data") {
@@ -117,17 +114,15 @@ if ($data == "searchdata") {
                '" . $data_account['txtpenalty_before_amount'] . "'
                 )";
 
-	//$connect->queryData();
+	$connect->queryData();
 	echo json_encode(["id" => $_GET['id']]);
-}
-
-else if($data=="insertpayment_schedule"){
+} else if ($data == "insertpayment_schedule") {
 	$payment_schedule = json_decode($_POST['payment_schedule'], true);
 
-	foreach($payment_schedule as $item){
-		$expdateS=explode('/',$item['due_date']);
-        $due_date=($expdateS[2]-543).'-'.$expdateS[1].'-'.$expdateS[0];
-		
+	foreach ($payment_schedule as $item) {
+		$expdateS = explode('/', $item['due_date']);
+		$due_date = ($expdateS[2] - 543) . '-' . $expdateS[1] . '-' . $expdateS[0];
+
 		$connect->sql = "INSERT INTO `payment_schedule`(`debt_id`,
 		 `due_date`, `principal_percentage`, `principal_amount`, `interest_amount`) VALUES 
 		 ('" . $_GET['id'] . "',
@@ -136,17 +131,124 @@ else if($data=="insertpayment_schedule"){
 		  '" . $item['principal_amount'] . "',
 		  '" . $item['interest_amount'] . "'
 		 )";
-	  // $connect->queryData();
-		
+		 $connect->queryData();
+
 	}
 
-	
+
 	echo json_encode(["id" => $_GET['id']]);
-}
-
-else if($data=="insertpayment_due"){
+} else if ($data == "insertpayment_due") {
 	$payment_due = json_decode($_POST['payment_due'], true);
+	foreach ($payment_due as $item) {
+		$expdateS = explode('/', $item['due_date']);
+		$due_date = ($expdateS[2] - 543) . '-' . $expdateS[1] . '-' . $expdateS[0];
 
-	
-	echo json_encode($payment_due);
+		$last_payment_date = "";
+		if ($item['last_payment_date'] != "") {
+			$last_payment_date_ = explode('/', $item['last_payment_date']);
+			$last_payment_date = ($last_payment_date_[2] - 543) . '-' . $last_payment_date_[1] . '-' . $last_payment_date_[0];
+		}
+
+
+		$connect->sql = "INSERT INTO `payment_due`(`debt_id`,
+		 `due_date`,
+		  `total_payment_due`,
+		   `interest_amount`, 
+		   `principal_amount`,
+		    `status`,
+			 `last_payment_date`,
+			  `overdue_amount`) VALUES (
+				'" . $_GET['id'] . "',
+				'" . $due_date . "',
+				'" . $item['total_payment_due'] . "',
+				'" . $item['interest_amount'] . "',
+				'" . $item['principal_amount'] . "',
+				'" . $item['status'] . "',
+				'" . $last_payment_date . "',
+				'" . $item['overdue_amount'] . "'
+				)";
+		$connect->queryData();
+	}
+
+	echo json_encode(["id" => $_GET['id']]);
+} else if ($data == "insertguarantor") {
+	$dataGuarantor = json_decode($_POST['dataGuarantor'], true);
+
+	foreach ($dataGuarantor as $item) {
+		if ($item['birthday'] != "") {
+			$birthday_ = explode('/', $item['birthday']);
+			$birthday = ($birthday_[2] - 543) . '-' . $birthday_[1] . '-' . $birthday_[0];
+		}
+
+		$connect->sql = "SELECT max(id) as maxid FROM guarantor";
+		$connect->queryData();
+		$rsconnect = $connect->fetch_AssocData();
+		$id = $rsconnect['maxid'] + 1;
+
+
+		$connect->sql = "INSERT INTO `guarantor`(id,`debt_id`, `prefix`, `fname`, `lname`, `relationship`, `idcard`, `guarantee_percentage`, `guarantee_amount`, 
+		`birthday`, `age`, `gender`, `status_person`) 
+		VALUES ('" . $id . "','" . $_GET['id'] . "',
+		'" . $item['prefix'] . "',
+		'" . $item['fname'] . "',
+		'" . $item['lname'] . "',
+		'" . $item['relationship'] . "',
+		'" . $item['idcard'] . "',
+		'" . $item['guarantee_percentage'] . "',
+		'" . $item['guarantee_amount'] . "',
+		'" . $birthday . "',
+		'-',
+		'" . $item['gender'] . "',
+		'" . $item['status_person'] . "')";
+		$connect->queryData();
+
+		//insert_address
+		foreach ($item['dataGuarantor_address'] as $value) {
+			if ($value) {
+				$connect->sql = "INSERT INTO `guarantor_address`(`guarantor_id`, `address_type`, `address`, `zipcode`, `telephone`) 
+				VALUES ('" . $id . "',
+				'" . $value['type_address'] . "',
+				'" . $value['address'] . "',
+				'" . $value['zipcode'] . "',
+				'" . $value['telephone'] . "')";
+				$connect->queryData();
+			}
+		}
+	}
+
+	echo json_encode(["id" => $_GET['id']]);
+} else if ($data == "insertlitigation") {
+	$litigation = $_POST;
+
+	$txtfiling_date = explode('/', $item['txtfiling_date']);
+	$filing_date = ($txtfiling_date[2] - 543) . '-' . $txtfiling_date[1] . '-' . $txtfiling_date[0];
+
+	$txtcase_status_date = explode('/', $item['txtcase_status_date']);
+	$case_status_date = ($txtcase_status_date[2] - 543) . '-' . $txtcase_status_date[1] . '-' . $txtcase_status_date[0];
+
+	$txtcase_setup_date = explode('/', $item['txtcase_setup_date']);
+	$case_setup_date = ($txtcase_setup_date[2] - 543) . '-' . $txtcase_setup_date[1] . '-' . $txtcase_setup_date[0];
+
+	$connect->sql = "INSERT INTO `litigation`(debt_id,`lg_id`, `court`,
+	`lawyer_office`, `phone_number`,
+	 `black_case_number`, `red_case_number`,
+	  `filing_date`, `case_iteration`,
+	   `case_status_date`, `case_setup_date`,
+		`case_status`, `legal_status`) VALUES
+		 ( '" . $_GET['id'] . "',
+		  '" . $litigation['txtlg_id'] . "',
+		   '" . $litigation['txtcourt'] . "',
+		   '" . $litigation['txtlawyer_office'] . "',
+		   '" . $litigation['txtphone_number'] . "',
+		   '" . $litigation['txtblack_case_number'] . "',
+		   '" . $litigation['txtred_case_number'] . "',
+		   '" . $filing_date . "',
+		   '" . $litigation['txtcase_iteration'] . "',
+		   '" . $case_status_date . "',
+		   '" . $case_setup_date . "',
+		   '" . $litigation['txtcase_status'] . "',
+		   '" . $litigation['txtlegal_status'] . "'
+		 )";
+	$connect->queryData();
+	echo json_encode(["id" => $_GET['id']]);
 }
