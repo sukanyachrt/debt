@@ -1,6 +1,11 @@
 <?php include('../include/header.php') ?>
 <link rel="stylesheet" href="../asset/plugins/bs-stepper/css/bs-stepper.min.css">
-
+<link rel="stylesheet" href="../asset/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<link rel="stylesheet" href="../asset/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" type="text/css" href="../asset/progress/progress.css">
+<div id="loading">
+    <img id="loading-image" src="../asset/progress/progress.gif" alt="Loading..." />
+</div>
 <div class="wrapper">
     <?php include("../include/topmenu.php") ?>
     <div class="content-wrapper">
@@ -819,9 +824,9 @@
                     <div class="modal-body">
                         <p id="showAlert"></p>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" onclick="alertYes()"  class="btn btn-primay">ตกลง</button>
-                        
+                    <div class="modal-footer justify-content-end">
+                        <button type="button" onclick="alertYes()" class="btn btn-primary">ตกลง</button>
+
                     </div>
                 </div>
             </div>
@@ -836,7 +841,8 @@
 <link href="../asset/datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
 <script src="../asset/datepicker/js/bootstrap-datepicker-custom.js"></script>
 <script src="../asset/datepicker/locales/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
-
+<script src="../asset/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="../asset/plugins/toastr/toastr.min.js"></script>
 <script src="js/formvalid.js"></script>
 <script src="js/tbpayment_schedule.js"></script>
 <script src="js/tbpayment_due.js"></script>
@@ -927,6 +933,7 @@
             $('#error_payment_due').text('')
             stepper.next()
         } else {
+            toastr.error('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
             $('#error_payment_due').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
         }
 
@@ -938,7 +945,8 @@
         var rowCount = $('#tbGuarantor tbody tr').length;
 
         if (rowCount <= 0) {
-            alert("โปรดเพิ่มข้อมูลผู้ค้ำประกันอย่างน้อย 1 คนค่ะ")
+            toastr.error('โปรดเพิ่มข้อมูลผู้ค้ำประกันอย่างน้อย 1 คนค่ะ')
+
         } else {
             stepper.next();
         }
@@ -1090,8 +1098,13 @@
 
                                                                                             if (Res.id > 0) {
                                                                                                 $('#showAlert').text('บันทึกข้อมูลแล้วค่ะ')
-                                                                                                $('#modal-alert').modal('show');
-                                                                                                window.location.replace('../debt-account/');
+                                                                                                $('#modal-alert').modal({
+                                                                                                    backdrop: 'static', // ทำให้คลิกด้านนอกไม่สามารถปิด Modal ได้
+                                                                                                    keyboard: false // ทำให้ใช้ปุ่ม 'esc' ไม่สามารถปิด Modal ได้
+                                                                                                });
+                                                                                                // $('#showAlert').text('บันทึกข้อมูลแล้วค่ะ')
+                                                                                                // $('#modal-alert').modal('show');
+                                                                                                // window.location.replace('../debt-account/');
                                                                                             }
                                                                                         }
                                                                                     });
@@ -1126,20 +1139,17 @@
 
     }
 
-    function alertYes(data){
-        if($('#showAlert')=="yes"){
-            window.location.replace('../debt-account/');
-        }
+    function alertYes(data) {
         
-        else{
-            $('#modal-alert').modal('hide');
-        }
+            window.location.replace('../debt-account/');
+        
 
     }
 
     $.validator.addMethod("alphanumeric", function(value, element) {
         return this.optional(element) || /^[0-9-]+$/.test(value);
     }, "โปรดกรอกข้อมูลที่มีเฉพาะตัวเลขและตัวอักษร (a-z)");
+    $('#loading').hide();
 </script>
 </body>
 

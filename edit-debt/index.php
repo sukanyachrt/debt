@@ -1,6 +1,11 @@
 <?php include('../include/header.php') ?>
 <link rel="stylesheet" href="../asset/plugins/bs-stepper/css/bs-stepper.min.css">
-
+<link rel="stylesheet" href="../asset/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<link rel="stylesheet" href="../asset/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" type="text/css" href="../asset/progress/progress.css">
+<div id="loading">
+    <img id="loading-image" src="../asset/progress/progress.gif" alt="Loading..." />
+</div>
 <div class="wrapper">
     <?php include("../include/topmenu.php") ?>
     <div class="content-wrapper">
@@ -396,9 +401,8 @@
                     <div class="modal-body">
                         <p id="showAlert"></p>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-danger">ตกลง</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+                    <div class="modal-footer justify-content-end">
+                        <button type="button" onclick="yesAlert()" class="btn btn-primary">ตกลง</button>
 
                     </div>
                 </div>
@@ -414,7 +418,8 @@
 <link href="../asset/datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
 <script src="../asset/datepicker/js/bootstrap-datepicker-custom.js"></script>
 <script src="../asset/datepicker/locales/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
-
+<script src="../asset/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="../asset/plugins/toastr/toastr.min.js"></script>
 <script src="js/formvalid.js"></script>
 <script src="js/tbpayment_schedule.js"></script>
 <script src="js/tbpayment_due.js"></script>
@@ -422,9 +427,23 @@
 <script src="js/formguarantor.js"></script>
 <script src="js/formlitigation.js"></script>
 <script>
+    // $(document).ready(function() {
+    //     $('#modal-alert').modal({
+    //         backdrop: 'static', // ทำให้คลิกด้านนอกไม่สามารถปิด Modal ได้
+    //         keyboard: false // ทำให้ใช้ปุ่ม 'esc' ไม่สามารถปิด Modal ได้
+    //     });
+    // });
     document.addEventListener('DOMContentLoaded', function() {
         window.stepper = new Stepper(document.querySelector('.bs-stepper'))
     });
+
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+
     $('[data-mask]').inputmask();
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy',
@@ -530,7 +549,7 @@
             type: "POST",
             success: function(Res) {
                 console.log(Res);
-                 dataGuarantor=Res;
+                dataGuarantor = Res;
                 $('#tbGuarantor tbody').html('')
                 $.each(Res, function(index, data) {
                     $('#tbGuarantor tbody').append(` <tr data-index="${index}">
@@ -644,6 +663,7 @@
             $('#error_payment_due').text('')
             stepper.next()
         } else {
+            toastr.error('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
             $('#error_payment_due').text('*** กรุณากรอกข้อมูลให้ครบทุกแถว ***')
         }
 
@@ -655,7 +675,8 @@
         var rowCount = $('#tbGuarantor tbody tr').length;
 
         if (rowCount <= 0) {
-            alert("โปรดเพิ่มข้อมูลผู้ค้ำประกันอย่างน้อย 1 คนค่ะ")
+            toastr.error('โปรดเพิ่มข้อมูลผู้ค้ำประกันอย่างน้อย 1 คนค่ะ')
+
         } else {
             stepper.next();
         }
@@ -694,161 +715,171 @@
 
     function checkIitigation() {
         if ($('#litigation-form').valid()) {
-
+            $('#loading').show();
 
 
 
 
             $.ajax({
-                async: true,
-                url: "../services/edit-debt/data.php?v=editdebt&id=<?php echo $_GET['id'] ?>",
-                type: "POST",
-                cache: false,
-                data: $('#debt-detailForm').serialize(),
-                success: function(Res) {
-                    // console.log(Res)
-                    if (Res.id > 0) {
-                        var account_type = $('#debt-detailForm [name="txttype_account"]').val()
-                        var no_account = $('#debt-detailForm [name="txtno_account"]').val()
-                        $.ajax({
-                            async: true,
-                            url: "../services/edit-debt/data.php?v=editaccount_debt&id=" + Res.id + "&account_type=" + account_type + "&no_account=" + no_account,
-                            type: "POST",
-                            cache: false,
-                            data: $('#account-detailForm').serialize(),
-                            success: function(Res) {
+                    async: true,
+                    url: "../services/edit-debt/data.php?v=editdebt&id=<?php echo $_GET['id'] ?>",
+                    type: "POST",
+                    cache: false,
+                    data: $('#debt-detailForm').serialize(),
+                    success: function(Res) {
+                        // console.log(Res)
+                        if (Res.id > 0) {
+                            var account_type = $('#debt-detailForm [name="txttype_account"]').val()
+                            var no_account = $('#debt-detailForm [name="txtno_account"]').val()
+                            $.ajax({
+                                    async: true,
+                                    url: "../services/edit-debt/data.php?v=editaccount_debt&id=" + Res.id + "&account_type=" + account_type + "&no_account=" + no_account,
+                                    type: "POST",
+                                    cache: false,
+                                    data: $('#account-detailForm').serialize(),
+                                    success: function(Res) {
 
-                                if (Res.id > 0) {
-                                    $.ajax({
-                                        async: true,
-                                        url: "../services/edit-debt/data.php?v=editaccount_data&id=" + Res.id,
-                                        type: "POST",
-                                        cache: false,
-                                        data: $('#account-dataForm').serialize(),
-                                        success: function(Res) {
-                                            //console.log(Res)
-                                            if (Res.id > 0) {
-
-                                                let tbPayment_schedule = [];
-                                                $('#tbPayment_schedule tbody tr').each(function() {
-                                                    var due_date = $(this).find('td:eq(1) input[type="text"]').val();
-                                                    var principal_percentage = $(this).find('td:eq(2) input[type="text"]').val();
-                                                    var principal_amount = $(this).find('td:eq(3) input[type="text"]').val();
-                                                    var interest_amount = $(this).find('td:eq(4) input[type="text"]').val();
-                                                    tbPayment_schedule.push({
-                                                        'due_date': due_date,
-                                                        'principal_percentage': principal_percentage,
-                                                        'principal_amount': principal_amount,
-                                                        'interest_amount': interest_amount,
-                                                    });
-                                                });
-
-
-                                                $.ajax({
+                                        if (Res.id > 0) {
+                                            $.ajax({
                                                     async: true,
-                                                    url: "../services/edit-debt/data.php?v=editpayment_schedule&id=" + Res.id,
+                                                    url: "../services/edit-debt/data.php?v=editaccount_data&id=" + Res.id,
                                                     type: "POST",
                                                     cache: false,
-                                                    data: {
-                                                        payment_schedule: JSON.stringify(tbPayment_schedule)
-                                                    },
+                                                    data: $('#account-dataForm').serialize(),
                                                     success: function(Res) {
                                                         //console.log(Res)
                                                         if (Res.id > 0) {
-                                                            //เริ่ม
-                                                            let tbPayment_due = [];
-                                                            $('#tbPayment_due tbody tr').each(function() {
-                                                                var due_date = $(this).find('td:eq(1) input[type="text"]').val();
-                                                                var total_payment_due = $(this).find('td:eq(2) input[type="text"]').val();
-                                                                var interest_amount = $(this).find('td:eq(3) input[type="text"]').val();
-                                                                var principal_amount = $(this).find('td:eq(4) input[type="text"]').val();
-                                                                var status = $(this).find('td:eq(5) input[type="text"]').val();
-                                                                var last_payment_date = $(this).find('td:eq(6) input[type="text"]').val();
-                                                                var overdue_amount = $(this).find('td:eq(7) input[type="text"]').val();
 
-                                                                tbPayment_due.push({
+                                                            let tbPayment_schedule = [];
+                                                            $('#tbPayment_schedule tbody tr').each(function() {
+                                                                var due_date = $(this).find('td:eq(1) input[type="text"]').val();
+                                                                var principal_percentage = $(this).find('td:eq(2) input[type="text"]').val();
+                                                                var principal_amount = $(this).find('td:eq(3) input[type="text"]').val();
+                                                                var interest_amount = $(this).find('td:eq(4) input[type="text"]').val();
+                                                                tbPayment_schedule.push({
                                                                     'due_date': due_date,
-                                                                    'total_payment_due': total_payment_due,
-                                                                    'interest_amount': interest_amount,
+                                                                    'principal_percentage': principal_percentage,
                                                                     'principal_amount': principal_amount,
-                                                                    'status': status,
-                                                                    'last_payment_date': last_payment_date,
-                                                                    'overdue_amount': overdue_amount
+                                                                    'interest_amount': interest_amount,
                                                                 });
                                                             });
+
+
                                                             $.ajax({
-                                                                async: true,
-                                                                url: "../services/edit-debt/data.php?v=editpayment_due&id=" + Res.id,
-                                                                type: "POST",
-                                                                cache: false,
-                                                                data: {
-                                                                    payment_due: JSON.stringify(tbPayment_due)
-                                                                },
-                                                                success: function(Res) {
-                                                                    if (Res.id > 0) {
-                                                                       $.ajax({
-                                                                            async: true,
-                                                                            url: "../services/edit-debt/data.php?v=editguarantor&id=" + Res.id,
-                                                                            type: "POST",
-                                                                            cache: false,
-                                                                            data: {
-                                                                                dataGuarantor: JSON.stringify(dataGuarantor)
-                                                                            },
-                                                                            success: function(Res) {
-                                                                                console.log(Res)
-                                                                                if (Res.id > 0) {
+                                                                    async: true,
+                                                                    url: "../services/edit-debt/data.php?v=editpayment_schedule&id=" + Res.id,
+                                                                    type: "POST",
+                                                                    cache: false,
+                                                                    data: {
+                                                                        payment_schedule: JSON.stringify(tbPayment_schedule)
+                                                                    },
+                                                                    success: function(Res) {
+                                                                        //console.log(Res)
+                                                                        if (Res.id > 0) {
+                                                                            //เริ่ม
+                                                                            let tbPayment_due = [];
+                                                                            $('#tbPayment_due tbody tr').each(function() {
+                                                                                var due_date = $(this).find('td:eq(1) input[type="text"]').val();
+                                                                                var total_payment_due = $(this).find('td:eq(2) input[type="text"]').val();
+                                                                                var interest_amount = $(this).find('td:eq(3) input[type="text"]').val();
+                                                                                var principal_amount = $(this).find('td:eq(4) input[type="text"]').val();
+                                                                                var status = $(this).find('td:eq(5) input[type="text"]').val();
+                                                                                var last_payment_date = $(this).find('td:eq(6) input[type="text"]').val();
+                                                                                var overdue_amount = $(this).find('td:eq(7) input[type="text"]').val();
 
-                                                                                    $.ajax({
-                                                                                        async: true,
-                                                                                        url: "../services/edit-debt/data.php?v=editlitigation&id=" + Res.id,
-                                                                                        type: "POST",
-                                                                                        cache: false,
-                                                                                        data: $('#litigation-form').serialize(),
-                                                                                        success: function(Res) {
-                                                                                            console.log(Res)
-                                                                                            if (Res.id > 0) {
-                                                                                                // $('#showAlert').text('บันทึกข้อมูลแล้วค่ะ')
-                                                                                                // $('#modal-alert').modal('show');
-                                                                                                // setTimeout(function() {
-                                                                                                //     window.location.replace('../debt-account/');
-                                                                                                // }, 5000);
+                                                                                tbPayment_due.push({
+                                                                                    'due_date': due_date,
+                                                                                    'total_payment_due': total_payment_due,
+                                                                                    'interest_amount': interest_amount,
+                                                                                    'principal_amount': principal_amount,
+                                                                                    'status': status,
+                                                                                    'last_payment_date': last_payment_date,
+                                                                                    'overdue_amount': overdue_amount
+                                                                                });
+                                                                            });
+                                                                            $.ajax({
+                                                                                    async: true,
+                                                                                    url: "../services/edit-debt/data.php?v=editpayment_due&id=" + Res.id,
+                                                                                    type: "POST",
+                                                                                    cache: false,
+                                                                                    data: {
+                                                                                        payment_due: JSON.stringify(tbPayment_due)
+                                                                                    },
+                                                                                    success: function(Res) {
+                                                                                        if (Res.id > 0) {
+                                                                                            $.ajax({
+                                                                                                    async: true,
+                                                                                                    url: "../services/edit-debt/data.php?v=editguarantor&id=" + Res.id,
+                                                                                                    type: "POST",
+                                                                                                    cache: false,
+                                                                                                    data: {
+                                                                                                        dataGuarantor: JSON.stringify(dataGuarantor)
+                                                                                                    },
+                                                                                                    success: function(Res) {
+                                                                                                        console.log(Res)
+                                                                                                        if (Res.id > 0) {
+
+                                                                                                            $.ajax({
+                                                                                                                    async: true,
+                                                                                                                    url: "../services/edit-debt/data.php?v=editlitigation&id=" + Res.id,
+                                                                                                                    type: "POST",
+                                                                                                                    cache: false,
+                                                                                                                    data: $('#litigation-form').serialize(),
+                                                                                                                    success: function(Res) {
+                                                                                                                        console.log(Res)
+                                                                                                                        if (Res.id > 0) {
+                                                                                                                            $('#showAlert').text('บันทึกข้อมูลแล้วค่ะ')
+                                                                                                                            $('#modal-alert').modal({
+                                                                                                                                backdrop: 'static', // ทำให้คลิกด้านนอกไม่สามารถปิด Modal ได้
+                                                                                                                                keyboard: false // ทำให้ใช้ปุ่ม 'esc' ไม่สามารถปิด Modal ได้
+                                                                                                                            });
+                                                                                                                        
+                                                                                                                    // setTimeout(function() {
+
+                                                                                                                    // }, 5000);
+                                                                                                                }
+                                                                                                            }
+                                                                                                        });
+                                                                                                }
+
                                                                                             }
-                                                                                        }
-                                                                                    });
-                                                                                }
+                                                                                        });
 
+                                                                                }
                                                                             }
                                                                         });
 
-                                                                    }
+
                                                                 }
-                                                            });
+                                                            }
+                                                        });
+                                                }
 
-
-                                                        }
-                                                    }
-                                                });
                                             }
-
-                                        }
-                                    });
+                                        });
 
                                 }
                             }
                         });
 
-                    }
                 }
-            });
-        }
+            }
+        });
+    }
 
 
 
     }
 
+    function yesAlert() {
+        window.location.replace('../debt-account/');
+    }
+
+
     $.validator.addMethod("alphanumeric", function(value, element) {
         return this.optional(element) || /^[0-9-]+$/.test(value);
     }, "โปรดกรอกข้อมูลที่มีเฉพาะตัวเลขและตัวอักษร (a-z)");
+    $('#loading').hide();
 </script>
 </body>
 
