@@ -806,6 +806,27 @@
             </div>
 
         </div>
+        <!-- alert ALL -->
+        <div class="modal fade" id="modal-alert">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <h4 class="modal-title">แจ้งเตือน</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="showAlert"></p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-danger">ตกลง</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?php include("../include/script.php") ?>
@@ -817,12 +838,12 @@
 <script src="../asset/datepicker/js/bootstrap-datepicker-custom.js"></script>
 <script src="../asset/datepicker/locales/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
 
-<script src="formvalid.js"></script>
-<script src="tbpayment_schedule.js"></script>
-<script src="tbpayment_due.js"></script>
-<script src="tbguarantoraddress.js"></script>
-<script src="formguarantor.js"></script>
-<script src="formlitigation.js"></script>
+<script src="js/formvalid.js"></script>
+<script src="js/tbpayment_schedule.js"></script>
+<script src="js/tbpayment_due.js"></script>
+<script src="js/tbguarantoraddress.js"></script>
+<script src="js/formguarantor.js"></script>
+<script src="js/formlitigation.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         window.stepper = new Stepper(document.querySelector('.bs-stepper'))
@@ -1069,8 +1090,11 @@
                                                                                         success: function(Res) {
 
                                                                                             if (Res.id > 0) {
-                                                                                                alert("บันทึกข้อมูลแล้วค่ะ");
-                                                                                                window.location.replace('../debt-account/');
+                                                                                                $('#showAlert').text('บันทึกข้อมูลแล้วค่ะ')
+                                                                                                $('#modal-alert').modal('show');
+                                                                                                setTimeout(function() {
+                                                                                                    window.location.replace('../debt-account/');
+                                                                                                }, 5000);
                                                                                             }
                                                                                         }
                                                                                     });

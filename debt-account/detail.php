@@ -41,9 +41,20 @@ $id = $_GET['id'];
                                     </button>
                                     รายละเอียดลูกหนี้
                                 </h5>
+                                <div class="card-tools">
+                                    <a type="button" class="badge bg-warning p-2" href="../edit-debt/?id=<?php echo $_GET['id'] ?>">
+                                        <i class="fas fa-edit"></i>
+                                        แก้ไขข้อมูล
+                                    </a>
+                                    <a type="button" class="badge bg-danger p-2" onclick="confirmDel('<?php echo $_GET['id'] ?>')">
+                                        <i class="fas fa-trash"></i>
+                                        ลบ
+                                    </a>
+
+                                </div>
                             </div>
                             <div class="card-body">
-                               
+
                                 <div class="row text-sm" id="dataDebt_detail">
                                     <!-- ข้อมูลรายละเอียดลุกหนี้ -->
                                 </div>
@@ -73,7 +84,7 @@ $id = $_GET['id'];
                                                 <div class="tab-content" id="custom-tabs-three-tabContent">
                                                     <div class="tab-pane fade show active" id="custom-tabs-three-account" role="tabpanel" aria-labelledby="custom-tabs-three-account-tab">
                                                         <div class="row text-sm" id="dataAcoount_detail">
-                                                            
+
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">
@@ -90,7 +101,7 @@ $id = $_GET['id'];
                                                                         <div id="dataAccount">
                                                                             <!-- ข้อมูลบัญชี -->
                                                                         </div>
-                                                                        
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -120,7 +131,7 @@ $id = $_GET['id'];
                                                                     <span id="txtSumPayment_schedule_2">55,310.91</span>
                                                                 </div>
                                                             </div>
-                                                            
+
 
                                                         </div>
                                                         <div class="row">
@@ -163,7 +174,7 @@ $id = $_GET['id'];
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        
+
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -185,7 +196,7 @@ $id = $_GET['id'];
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        
+
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -205,7 +216,7 @@ $id = $_GET['id'];
                                                                     </div>
                                                                     <div class="card-body">
                                                                         <div class="row text-sm" id="datalitigation">
-                                                                            
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -274,6 +285,28 @@ $id = $_GET['id'];
             </div>
             <!-- /.modal-dialog -->
         </div>
+        <!-- ลบข้อมูล -->
+        <div class="modal fade" id="modal-confirmDel">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h4 class="modal-title">ยืนยันการลบข้อมูล</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>ยืนยันการลบ?</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" id="delId" onclick="del()" class="btn btn-danger">ยืนยัน</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <?php include("../include/script.php") ?>
@@ -287,26 +320,26 @@ $id = $_GET['id'];
     dataLitigation();
 
 
-   
-   function dataDebt_detail() {
+
+    function dataDebt_detail() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("dataDebt_detail").innerHTML = this.responseText;
-               
+
             }
         };
         xhttp.open("GET", "../services/debt-account/debtor_detail.php?id=<?php echo $id ?>", true);
         xhttp.send();
     }
 
-   
+
     function dataAcoount_detail() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("dataAcoount_detail").innerHTML = this.responseText;
-               
+
             }
         };
         xhttp.open("GET", "../services/debt-account/account_detail.php?id=<?php echo $id ?>", true);
@@ -319,10 +352,10 @@ $id = $_GET['id'];
             if (this.readyState == 4 && this.status == 200) {
                 console.log(this.responseText)
                 document.getElementById("dataAccount").innerHTML = this.responseText;
-               
+
             }
         };
-        
+
         xhttp.open("GET", "../services/debt-account/account.php?id=<?php echo $id ?>", true);
         xhttp.send();
     }
@@ -408,6 +441,25 @@ $id = $_GET['id'];
         var cell = tbody.rows[data - 1].cells[columnIndex]
         document.getElementById("txtSumPayment_schedule").innerHTML = cell.innerHTML;
         document.getElementById("txtSumPayment_schedule_2").innerHTML = cell.innerHTML;
+    }
+
+    function confirmDel(id) {
+        $('#delId').val(id)
+        $('#modal-confirmDel').modal('show');
+       
+    }
+    function del() {
+        var id = $('#delId').val();
+         $.ajax({
+            url: "../services/debt-account/data.php?v=updateStatus_debt&id=" + id,
+            type: "GET",
+            success: function(Res) {
+                $('#modal-confirmDel').modal('hide');
+                window.location.replace('../debt-account/');
+            }
+        });
+
+       
     }
 </script>
 </body>

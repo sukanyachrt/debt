@@ -24,13 +24,20 @@ if ($data == "searchdata") {
      FROM
 	debtor
 	INNER JOIN account_debt ON debtor.id = account_debt.debt_id
-    WHERE	idcard = '" . $find['idcard'] . "' OR fname = '" . $find['fname'] . "' OR lname = '" . $find['lname'] . "' OR no_account = '" . $find['noaccount'] . "'";
+    WHERE status_debt='1' AND	(idcard = '" . $find['idcard'] . "' OR fname = '" . $find['fname'] . "' OR lname = '" . $find['lname'] . "' OR no_account = '" . $find['noaccount'] . "')";
 	$connect->queryData();
 	while ($rsconnect = $connect->fetch_AssocData()) {
 		array_push($result, $rsconnect);
 	}
 	echo json_encode($result);
-} else if ($data == "insertdebt") {
+}
+else if($data == "updateStatus_debt") {
+	$connect->sql="UPDATE debtor SET status_debt=0 WHERE id='".$_GET['id']."'";
+	$connect->queryData();
+	echo json_encode(1);
+}
+
+else if ($data == "insertdebt") {
 	
 
 	$connect->sql = "SELECT max(id) as maxid FROM debtor";
@@ -41,12 +48,12 @@ if ($data == "searchdata") {
 
 	$debt = $_POST;
 	$connect->sql = "INSERT INTO `debtor`(id,`idcard`,`prefix`, `fname`,`lname`,`no_account`,`status_account`,          `status_personal`, 
-	`type_account`,`telephone`) VALUES
+	`type_account`,`telephone`,status_debt) VALUES
 	 ( '" . $id . "',
 		'" . $debt['txtidcard'] . "','" . $debt['txtprefix'] . "',
 	 '" . $debt['txtfname'] . "','" . $debt['txtlname'] . "',
 	 '" . $debt['txtno_account'] . "','" . $debt['txtstatus_account'] . "',
-	 '" . $debt['txtstatus_personal'] . "','" . $debt['txttype_account'] . "','[" . json_encode($debt['txttelephone']) . "]')";
+	 '" . $debt['txtstatus_personal'] . "','" . $debt['txttype_account'] . "','[" . json_encode($debt['txttelephone']) . "]','1')";
 	$connect->queryData();
 
 	echo json_encode(["id" => $id]);
@@ -252,3 +259,5 @@ if ($data == "searchdata") {
 	$connect->queryData();
 	echo json_encode(["id" => $_GET['id']]);
 }
+
+
