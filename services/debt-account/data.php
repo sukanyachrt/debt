@@ -220,13 +220,13 @@ if ($data == "searchdata") {
 } else if ($data == "insertlitigation") {
 	$litigation = $_POST;
 
-	$txtfiling_date = explode('/', $item['txtfiling_date']);
+	$txtfiling_date = explode('/', $litigation['txtfiling_date']);
 	$filing_date = ($txtfiling_date[2] - 543) . '-' . $txtfiling_date[1] . '-' . $txtfiling_date[0];
 
-	$txtcase_status_date = explode('/', $item['txtcase_status_date']);
+	$txtcase_status_date = explode('/', $litigation['txtcase_status_date']);
 	$case_status_date = ($txtcase_status_date[2] - 543) . '-' . $txtcase_status_date[1] . '-' . $txtcase_status_date[0];
 
-	$txtcase_setup_date = explode('/', $item['txtcase_setup_date']);
+	$txtcase_setup_date = explode('/', $litigation['txtcase_setup_date']);
 	$case_setup_date = ($txtcase_setup_date[2] - 543) . '-' . $txtcase_setup_date[1] . '-' . $txtcase_setup_date[0];
 
 	$connect->sql = "INSERT INTO `litigation`(debt_id,`lg_id`, `court`,
