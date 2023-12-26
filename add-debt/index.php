@@ -847,7 +847,7 @@
 <script src="js/tbpayment_schedule.js?v=1"></script>
 <script src="js/tbpayment_due.js?v=1"></script>
 <script src="js/tbguarantoraddress.js?v=1"></script>
-<script src="js/formguarantor.js?v=1"></script>
+<script src="js/formguarantor.js?v=2"></script>
 <script src="js/formlitigation.js?v=1"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

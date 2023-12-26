@@ -21,6 +21,9 @@ $('#guarantor-form').validate({
         txtguarantee_percentage: {
             required: true,
         },
+        txtguarantee_amount : {
+            required: true,
+        },
         // txtbirthday: {
         //     required: true,
         // },
