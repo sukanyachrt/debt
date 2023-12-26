@@ -43,8 +43,8 @@ $id = $_GET['id'];
                                 </h5>
                                 <div class="card-tools">
                                     <a type="button" class="badge bg-warning p-2" href="../edit-debt/?id=<?php echo $_GET['id'] ?>">
-                                        <i class="fas fa-edit"></i>
-                                        แก้ไขข้อมูล
+                                        <i class="fas fa-edit text-white"></i>
+                                        <span class="text-white">แก้ไขข้อมูล</span>
                                     </a>
                                     <a type="button" class="badge bg-danger p-2" onclick="confirmDel('<?php echo $_GET['id'] ?>')">
                                         <i class="fas fa-trash"></i>
@@ -83,7 +83,7 @@ $id = $_GET['id'];
                                             <div class="card-body">
                                                 <div class="tab-content" id="custom-tabs-three-tabContent">
                                                     <div class="tab-pane fade show active" id="custom-tabs-three-account" role="tabpanel" aria-labelledby="custom-tabs-three-account-tab">
-                                                        <div class="row text-sm" id="dataAcoount_detail">
+                                                        <div class="row text-sm" id="dataAccount_detail">
 
                                                         </div>
                                                         <div class="row">
@@ -312,7 +312,7 @@ $id = $_GET['id'];
 <?php include("../include/script.php") ?>
 <script>
     dataDebt_detail();
-    dataAcoount_detail();
+    dataAccount_detail();
     dataAccount();
     dataPayment_schedule();
     dataPayment_due();
@@ -334,11 +334,11 @@ $id = $_GET['id'];
     }
 
 
-    function dataAcoount_detail() {
+    function dataAccount_detail() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("dataAcoount_detail").innerHTML = this.responseText;
+                document.getElementById("dataAccount_detail").innerHTML = this.responseText;
 
             }
         };

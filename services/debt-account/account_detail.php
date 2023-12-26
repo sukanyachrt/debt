@@ -130,7 +130,7 @@ if ($row > 0) {
 </div>
 <div class="col-md-2 col-3">
     <div class="form-group">
-        <span id="txtidcard">' . $rsdebtor['request_deferral'] . '</span>
+        <span id="txtidcard">' .($rsdebtor['request_deferral'] == '' ? '-' : $rsdebtor['request_deferral'])   . '</span>
     </div>
 </div>
 
@@ -141,7 +141,7 @@ if ($row > 0) {
 </div>
 <div class="col-md-2 col-3">
     <div class="form-group">
-        <span id="txtidcard">' . $rsdebtor['request_suspend'] . '</span>
+        <span id="txtidcard">' .($rsdebtor['request_suspend'] == '' ? '-' : $rsdebtor['request_suspend'])  . '</span>
     </div>
 </div>
 
@@ -152,7 +152,7 @@ if ($row > 0) {
 </div>
 <div class="col-md-2 col-3">
     <div class="form-group">
-        <span id="txtidcard">' . $rsdebtor['date_suspend'] . '</span>
+        <span id="txtidcard">' . ($rsdebtor['date_suspend'] == '' ? '-' : $rsdebtor['date_suspend'])   . '</span>
     </div>
 </div>';
 } else {

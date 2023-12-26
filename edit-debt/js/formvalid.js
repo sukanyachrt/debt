@@ -17,7 +17,7 @@ $('#debt-detailForm').validate({
         },
         txtno_account: {
             required: true,
-            alphanumeric: true,
+           
         },
         txtstatus_account: {
             required: true,
@@ -48,7 +48,7 @@ $('#debt-detailForm').validate({
         },
         txtno_account: {
             required: "โปรดกรอกเลขที่บัญชีเงินกู้ ",
-            alphanumeric: "กรุณากรอกเฉพาะตัวเลข",
+           
         },
         txtstatus_account: {
             required: "โปรดกรอกสถานะของบัญชีเงินกู้  ",
@@ -96,13 +96,13 @@ $('#account-detailForm').validate({
         txtstatus_change_date: {
             required: true,
         },
-        txtrequest_deferral: {
-            required: true,
+        // txtrequest_deferral: {
+        //     required: true,
             
-        },
-        txtrequest_suspend: {
-            required: true,
-        },
+        // },
+        // txtrequest_suspend: {
+        //     required: true,
+        // },
         // txtdate_suspend: {
         //     required: true,
         // },

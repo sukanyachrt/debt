@@ -420,12 +420,12 @@
 <script src="../asset/datepicker/locales/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
 <script src="../asset/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="../asset/plugins/toastr/toastr.min.js"></script>
-<script src="js/formvalid.js"></script>
-<script src="js/tbpayment_schedule.js"></script>
-<script src="js/tbpayment_due.js"></script>
-<script src="js/tbguarantoraddress.js"></script>
-<script src="js/formguarantor.js"></script>
-<script src="js/formlitigation.js"></script>
+<script src="js/formvalid.js?v=edit"></script>
+<script src="js/tbpayment_schedule.js?v=edit"></script>
+<script src="js/tbpayment_due.js?v=edit"></script>
+<script src="js/tbguarantoraddress.js?v=edit"></script>
+<script src="js/formguarantor.js?v=edit"></script>
+<script src="js/formlitigation.js?v=edit"></script>
 <script>
     // $(document).ready(function() {
     //     $('#modal-alert').modal({

@@ -96,13 +96,13 @@ $('#account-detailForm').validate({
         txtstatus_change_date: {
             required: true,
         },
-        txtrequest_deferral: {
-            required: true,
-            alphanumeric: true,
-        },
-        txtrequest_suspend: {
-            required: true,
-        },
+        // txtrequest_deferral: {
+        //     required: true,
+        //     alphanumeric: true,
+        // },
+        // txtrequest_suspend: {
+        //     required: true,
+        // },
         // txtdate_suspend: {
         //     required: true,
         // },
