@@ -13,16 +13,58 @@ $interest_amount=0;
 $principal_amount=0;
 $overdue_amount=0;
 while ($rsconnect = $connect->fetch_AssocData()) {
-    $total_payment_due+=$rsconnect["total_payment_due"];
-    $interest_amount+=$rsconnect["interest_amount"];
-    $principal_amount+=$rsconnect["principal_amount"];
-    $overdue_amount+=$rsconnect["overdue_amount"];
+    $total_payment_due_comma = floatval(str_replace(',', '', $rsconnect["total_payment_due"]));
+    $total_payment_due+=$total_payment_due_comma;
+
+
+
+
+    $interest_amount_comma = floatval(str_replace(',', '', $rsconnect["interest_amount"]));
+    $interest_amount+=$interest_amount_comma;
+
+
+
+    $principal_amount_comma = floatval(str_replace(',', '', $rsconnect["principal_amount"]));
+    
+    $principal_amount+=$principal_amount_comma;
+
+
+
+    $overdue_amount_comma = floatval(str_replace(',', '', $rsconnect["overdue_amount"]));
+    
+    $overdue_amount+=$overdue_amount_comma;
+
+
+
     echo "<tr>
     <td class='text-center'>" . $i++ . "</td>
     <td class='text-center'>" . date('d/m/', strtotime($rsconnect["due_date"])) . (date('Y', strtotime($rsconnect["due_date"])) + 543) . "</td>
-    <td class='text-right'>" . number_format($rsconnect["total_payment_due"], 2, '.', ',')  . "</td>
-    <td class='text-right'>" .number_format($rsconnect["interest_amount"], 2, '.', ',')   . "</td>
-    <td class='text-right'>" .number_format($rsconnect["principal_amount"], 2, '.', ',')   . "</td>
+    <td class='text-right'>";
+    if (strpos($rsconnect["total_payment_due"], ',') !== false) {
+        echo $rsconnect["total_payment_due"];
+    } else {
+        echo number_format($rsconnect["total_payment_due"], 2, '.', ',');
+    }
+    
+   // . number_format($rsconnect["total_payment_due"], 2, '.', ',')  . 
+    echo "</td>
+    <td class='text-right'>" ;
+    if (strpos($rsconnect["interest_amount"], ',') !== false) {
+        echo $rsconnect["interest_amount"];
+    } else {
+        echo number_format($rsconnect["interest_amount"], 2, '.', ',');
+    }
+    
+   // .number_format($rsconnect["interest_amount"], 2, '.', ',')   . 
+    echo "</td>
+    <td class='text-right'>" ;
+    if (strpos($rsconnect["principal_amount"], ',') !== false) {
+        echo $rsconnect["principal_amount"];
+    } else {
+        echo number_format($rsconnect["principal_amount"], 2, '.', ',');
+    }
+   // .number_format($rsconnect["principal_amount"], 2, '.', ',')   . 
+    echo "</td>
     <td class='text-center'>" . $rsconnect["status"] . "</td>
     <td class='text-center'>" ;
 
@@ -33,7 +75,14 @@ while ($rsconnect = $connect->fetch_AssocData()) {
             echo "";
         }
     echo "</td>
-    <td class='text-right'>" .number_format($rsconnect["overdue_amount"], 2, '.', ',')   . "</td>
+    <td class='text-right'>" ;
+    if (strpos($rsconnect["overdue_amount"], ',') !== false) {
+        echo $rsconnect["overdue_amount"];
+    } else {
+        echo number_format($rsconnect["overdue_amount"], 2, '.', ',');
+    }
+    //.number_format($rsconnect["overdue_amount"], 2, '.', ',')   . 
+    echo "</td>
     </tr>";
 }
 
