@@ -50,10 +50,10 @@ else if ($data == "insertdebt") {
 	$connect->sql = "INSERT INTO `debtor`(id,`idcard`,`prefix`, `fname`,`lname`,`no_account`,`status_account`,          `status_personal`, 
 	`type_account`,`telephone`,status_debt) VALUES
 	 ( '" . $id . "',
-		'" . $debt['txtidcard'] . "','" . $debt['txtprefix'] . "',
-	 '" . $debt['txtfname'] . "','" . $debt['txtlname'] . "',
-	 '" . $debt['txtno_account'] . "','" . $debt['txtstatus_account'] . "',
-	 '" . $debt['txtstatus_personal'] . "','" . $debt['txttype_account'] . "','[" . json_encode($debt['txttelephone']) . "]','1')";
+		'" . trim($debt['txtidcard']) . "','" . trim($debt['txtprefix']) . "',
+	 '" . trim($debt['txtfname']) . "','" . trim($debt['txtlname']) . "',
+	 '" . trim($debt['txtno_account']) . "','" . trim($debt['txtstatus_account']) . "',
+	 '" . trim($debt['txtstatus_personal']) . "','" . trim($debt['txttype_account']) . "','[" . json_encode(trim($debt['txttelephone'])) . "]','1')";
 	$connect->queryData();
 
 	echo json_encode(["id" => $id]);
@@ -125,11 +125,9 @@ else if ($data == "insertdebt") {
 	echo json_encode(["id" => $_GET['id']]);
 } else if ($data == "insertpayment_schedule") {
 	$payment_schedule = json_decode($_POST['payment_schedule'], true);
-
 	foreach ($payment_schedule as $item) {
 		$expdateS = explode('/', $item['due_date']);
 		$due_date = ($expdateS[2] - 543) . '-' . $expdateS[1] . '-' . $expdateS[0];
-
 		$connect->sql = "INSERT INTO `payment_schedule`(`debt_id`,
 		 `due_date`, `principal_percentage`, `principal_amount`, `interest_amount`) VALUES 
 		 ('" . $_GET['id'] . "',
